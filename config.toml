@@ -1,5 +1,46 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://morristai.github.io'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Morris Tai'
 
 theme = "PaperMod"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    [languages.en.taxonomies]
+      category = "categories"
+      tag = "tags"
+      series = "series"
+    [languages.en.menu]
+
+      [[languages.en.menu.main]]
+        name = "Archive"
+        url = "archives"
+        weight = 5
+
+      [[languages.en.menu.main]]
+        name = "Search"
+        url = "search/"
+        weight = 10
+
+      [[languages.en.menu.main]]
+        name = "Tags"
+        url = "tags/"
+        weight = 10
+      [[languages.en.menu.main]]
+        name = "Resume"
+        url = "/docs/resume_morris_tai.pdf"
+        weight = 10
+
+    #   [[languages.en.menu.main]]
+    #     name = "WiKi"
+    #     url = "https://github.com/adityatelange/hugo-PaperMod/wiki/"
+
+    #   [[languages.en.menu.main]]
+    #     name = "Discord"
+    #     url = "https://discord.gg/ahpmTvhVmp"
+ 
