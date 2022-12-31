@@ -1,11 +1,18 @@
 baseURL = 'https://morristai.github.io'
 languageCode = 'en-us'
-title = 'Morris Tai'
-
+title = "Morris.Blog"
 theme = "PaperMod"
 
 [outputs]
-home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  comments = true
+  [params.gitalk]
+    owner = "morristai" # GitHub ID
+    repo = "morristai.github.io.comments"
+    clientId = "c39ea41a62ca2985fa6a"
+    clientSecret = "ce5b1903b1ea9eb8bbb83f363d44935965b155f1"
 
 [languages]
   [languages.en]
