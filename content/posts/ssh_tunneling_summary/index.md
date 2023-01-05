@@ -1,5 +1,5 @@
 ---
-title: "Port Forwarding Summary"
+title: "SSH Tunneling Summary"
 date: 2020-12-10T10:04:55+08:00
 draft: false
 tags: ["port forwarding", "ssh", "network"]
@@ -10,10 +10,10 @@ There are three types of SSH port forwarding:
 1. **[Local Port Forwarding](#local-port-forwarding)**
 
     Forwards a connection from the client host to the SSH server host and then to the destination host port.
-1. **[Remote Port Forwarding](#remote-port-forwarding)**
+2. **[Remote Port Forwarding](#remote-port-forwarding)**
 
     Forwards a port from the server host to the client host and then to the destination host port.
-1. **[Dynamic Port Forwarding](#dynamic-port-forwarding)**
+3. **[Dynamic Port Forwarding](#dynamic-port-forwarding)**
 
     Creates a SOCKS proxy server that allows communication across a range of ports.
 
