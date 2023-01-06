@@ -1,0 +1,14 @@
+main {
+    --main-width: 1024px;
+  }
+
+.center {
+	text-align:center;
+}
+
+img[src$='#center'] {
+  display: block;
+  margin: 1.0rem auto;
+  max-width: 50%;
+  height: auto;
+}

@@ -82,16 +82,25 @@ enableEmoji = true
         name = "Tags"
         url = "tags/"
         weight = 10
+      
       [[languages.en.menu.main]]
-        name = "Resume"
-        url = "/docs/resume_morris_tai.pdf"
+        name = "About.Me"
+        url = "about/"
         weight = 10
 
-    #   [[languages.en.menu.main]]
-    #     name = "WiKi"
-    #     url = "https://github.com/adityatelange/hugo-PaperMod/wiki/"
+      # [[languages.en.menu.main]]
+      #   name = "Resume"
+      #   url = "/docs/resume_morris_tai.pdf"
+      #   weight = 10
 
-    #   [[languages.en.menu.main]]
-    #     name = "Discord"
-    #     url = "https://discord.gg/ahpmTvhVmp"
+      # [[languages.en.menu.main]]
+      #   name = "WiKi"
+      #   url = "https://github.com/adityatelange/hugo-PaperMod/wiki/"
+
+      [[languages.en.menu.main]]
+        name = "Discord"
+        url = "https://discordapp.com/users/434324950950608898"
  
+[markup.goldmark.parser.attribute]
+  block = true
+  title = true
