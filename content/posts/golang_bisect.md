@@ -1,36 +1,38 @@
 ---
-title: "在Go實踐bisect"
+title: "Practicing bisect in Go"
 date: 2020-05-05T11:46:56+08:00
 draft: false
-tags: ["go", "bisect"]
+tags: ["go", "binary search"]
 ---
 
-在Python我們習慣用`bisect`二元查找List裡的元素，在Go裡`sort.Search()`同樣可以提供我們相同的目的。
-跟Python相同，在查找之前要先對目標陣列進行排序。([關於Sort的教學](https://yourbasic.org/golang/how-to-sort-in-go/))
+In Python, we are used to using `bisect` to search for elements in the List. In Go, `sort.Search()` can also provide us with the same purpose.
+As in Python, the target array is sorted before searching.
+
 {{< highlight go>}}
 arr := []int{9, 2, 1, 3, 6, 4, 5, 5}
-sort.Ints(arr)
+sort. Ints(arr)
 {{< / highlight >}}
 
-排序完成後，我們使用sort.Search()，第一個參數為查找目標，第二個為搜尋條件的函式。
-這裡我們輸入slice: [1 2 3 4 5 5 6 9]，查找最靠近左邊的5，程式返回索引4。
+After sorting, we use sort.Search(), the first parameter is the search target, and the second is the function of the search condition.
+Here we input slice: [1 2 3 4 5 5 6 9], find the 5 closest to the left, and the program returns the index 4.
+
 {{< highlight go>}}
 // func Search(n int, f func(int) bool) int
 i := sort.Search(len(arr), func(i int) bool { return arr[i] >= 5 })
 fmt.Println(i) // output: 4
 {{< / highlight >}}
 
-但是在Python的bisect.left()中，可以指定查找範圍。(`bisect.bisect_left(a, x, lo=0, hi=len(a))`)
-我在網路上找到熱心網友實作出指定範圍的功能([參考連結](https://codeblog.shank.in/posts/golang-equivalent-of-pythons-bisect_left-and-bisect_right/)):
+But in Python's `bisect.left()`, you can specify the search range. (`bisect. bisect_left(a, x, lo=0, hi=len(a))`)
+I found on the Internet that enthusiastic netizens implement the function of specifying the range ([reference link](https://codeblog.shank.in/posts/golang-equivalent-of-pythons-bisect_left-and-bisect_right/)):
 
 {{< highlight go>}}
 func BisectLeft(a []int, v int) int {
-    // 自由調整查找範圍
+    // Freely adjust the search range
 	return bisectLeftRange(a, v, 0, len(a))
 }
 
 func bisectLeftRange(a []int, v int, lo, hi int) int {
-    // 查找範圍會等於lo+1到hi的所有元素，如果想直接覆蓋a可以寫成arr=arr[lo:hi]
+    // The search range will be equal to all elements from lo+1 to hi. If you want to directly cover a, you can write it as arr=arr[lo:hi]
 	s := a[lo:hi]
 	return sort.Search(len(s), func(i int) bool {
 		return s[i] >= v
@@ -38,7 +40,7 @@ func bisectLeftRange(a []int, v int, lo, hi int) int {
 }
 
 func BisectRight(a []int, v int) int {
-    // 自由調整查找範圍
+    // Freely adjust the search range
 	return bisectRightRange(a, v, 0, len(a))
 }
 
@@ -50,7 +52,7 @@ func bisectRightRange(a []int, v int, lo, hi int) int {
 }
 {{< / highlight >}}
 
-這樣一來我們只需要像Python一樣調用`bisect.left()`或`bisect.right()`就可以指定查找範圍了。
+In this way, we only need to call `bisect.left()` or `bisect.right()` like Python to specify the search range.
 {{< highlight go>}}
 func BinarySearch(a []int, v int) int {
 	pos := BisectLeft(a, v)
@@ -74,4 +76,4 @@ func BinarySearch(a []int, v int) int {
 }
 {{< / highlight >}}
 
-有錯誤歡迎指正~
+Ref:  [The 3 ways to sort in Go](https://yourbasic.org/golang/how-to-sort-in-go/)

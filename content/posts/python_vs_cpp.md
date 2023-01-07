@@ -1,13 +1,14 @@
 ---
-title: "常見的Python和C++ 11用法比較"
+title: "Common Python and C++11 usage comparison"
 date: 2019-05-12T11:46:56+08:00
 draft: false
-tags: ["python", "C++"]
+tags: ["python", "c++"]
 ---
 
-[Gist連結](https://gist.github.com/morristai/7c7c42c128177e8f4110cffa97e8fb7f)
+[My Gist](https://gist.github.com/morristai/7c7c42c128177e8f4110cffa97e8fb7f)
 
 ## Define Variables
+
 - Python
 {{< highlight python>}}
 a = 1
@@ -26,7 +27,9 @@ std::string c = "xxx";
 std::string c("xxx");
 std::string c{"xxx"};
 {{< / highlight >}}
+
 ## Variable Scopes
+
 - Python
 {{< highlight python>}}
 global_var1 = 1
@@ -41,6 +44,7 @@ if arg:
     # local_var2 is still accessible here.
     return False
 {{< / highlight >}}
+
 - C++
 {{< highlight cpp>}}
 int global_var1 = 1; // global
@@ -53,8 +57,10 @@ double local_var2 = 0.5; // scope: if block
 ....}
 // local_var2 is undefined here}
 {{< / highlight >}}
+
 ## Reference
-Python
+
+- Python
 {{< highlight python>}}
 s1 = {"key1" : 100}
 s2 = s1 # reference the same object
@@ -62,9 +68,12 @@ s2["key2"] = 200
 print(s1["key1"])
 # {"key1":100, "key2": 200}
 s2 = {} # s1 is NOT changed, s1 and s2
+
 # reference different objects now
+
 {{< / highlight >}}
-C++
+
+- C++
 {{< highlight cpp>}}
 std::unordered_map<std::string, int> s1 = {"key1" : 100};
 std::unordered_map<std::string, int> s2 = s1; // copy the whole object
@@ -77,8 +86,10 @@ auto& s2 = s1; // reference the same object
 auto s3 = s2;  // copy the whole s1 object. s3 is NOT a reference
 const auto& s3 = s2; // reference the same s1 object
 {{< / highlight >}}
+
 ## Conditional
-Python
+
+- Python
 {{< highlight python>}}
 if a == 1 and b == 2:
     pass
@@ -95,7 +106,8 @@ elif a == 3:
 else:
 ...
 {{< / highlight >}}
-C++
+
+- C++
 {{< highlight cpp>}}
 if (a == 1 && b == 2){}
 else if(c == 3 || d == 4){}
@@ -110,7 +122,9 @@ case 2: { // create a new scope if we need to define new variables
 default:  // it's good practice to always add this
 ...};
 {{< / highlight >}}
+
 ## Namespace & Imports
+
 - Python
 {{< highlight python>}}
 # Import: File: app/bidders/ai_util.py
@@ -119,6 +133,7 @@ import app.bidders.ai_util
 # Fully qualified names:
 app.bidders.ai_util.func("xxx")
 {{< / highlight >}}
+
 - C++
 {{< highlight cpp>}}
 // Import: Files: app/bidders/ai_util.hpp & ai_util.cpp
@@ -134,7 +149,9 @@ namespace app {
 // Fully qualified names:
 app::bidders::ai_util::func("xxx");
 {{< / highlight >}}
+
 ## Loops
+
 - Python
 {{< highlight python>}}
 for i in range(100):
@@ -148,6 +165,7 @@ b = {"key": 0.5, "key2", 1.0}
 for key, val in b.iteritems():
     pass
 {{< / highlight >}}    
+
 - C++
 {{< highlight cpp>}}
 for(int i = 0; i < 100; ++i){...}
@@ -161,13 +179,16 @@ for(auto& item: b){ // without &, this will copy each item
 auto& key = item.first;
 auto& val = item.second;}
 {{< / highlight >}}
+
 ## Functions
+
 - Python
 {{< highlight python>}}
 def func(arg1, arg2):
     ....
     return ret1, ret2, ret3
 {{< / highlight >}}
+
 - C++
 {{< highlight cpp>}}
 void func(const Arg1& arg1, const Arg2& arg2,
@@ -183,7 +204,9 @@ Declaration before use is required
 Add const to the references that are not changed by the method
 Declare in *.hpp, implement in *.cpp (for public functions)
 {{< / highlight >}}
+
 ## Class Definition
+
 - Python
 {{< highlight python>}}
 # Python version: only one *.py file:
@@ -197,7 +220,8 @@ class PythonClass(ParentClass):
     def _some_private_method(self): # kind of private func
         pass
 {{< / highlight >}}
-C++
+
+- C++
 {{< highlight cpp>}}
 // --------- Declaration: cpp_class.hpp ---------
 class CppClass: public ParentClass {
@@ -216,7 +240,9 @@ std::string attrib2;};
 double CppClass::someMethod(double arg1, double arg2){
 return arg1 * arg2 + attrib;}
 {{< / highlight >}}
+
 ## Virtual function
+
 - Python
 {{< highlight python>}}
 class Raccoon:
@@ -232,6 +258,7 @@ func(obj)
 
 # pintout: zebra_raccoon
 {{< / highlight >}}
+
 - C++
 {{< highlight cpp>}}
 class Raccoon {
@@ -264,7 +291,9 @@ Zebra obj;
 func(obj);
 // pintout: zebra_raccoon
 {{< / highlight >}}
+
 ## Manage Objects
+
 - Python
 {{< highlight python>}}
 obj = ObjClass()
@@ -293,21 +322,25 @@ obj->method(arg);
 obj->attribute = 100; // manual delete is not needed
 auto obj2 = obj;      // point to the same object (no * or &)
 {{< / highlight >}}
-## Common Data Types (Python -> C++)
-- int:
+
+## Common Data Types (from Python to C++)
+
+- `int`:
     - int, long, unsigned int, unsigned long (size is architecture dependent)
     - std::int64_t, std::uint64_t, std::int16_t, ... (#include <cstdint>, well-defined sizes)
-- bool:bool
-- float: double (64-bit), float(32-bit, bad performance & not recommended)
-- str, bytes: std::string (#include <string>)
+- `bool`:bool
+- `float`: double (64-bit), float(32-bit, bad performance & not recommended)
+- `str, bytes`: std::string (#include <string>)
 - containers:
-    - list: std::vector<> (#include <vector>)
-    - dict: std::unordered_map<> (#include <unordered_map>)
-    - set: std::unordered_set<> (#include <unordered_set>)
+    - `list`: std::vector<> (#include <vector>)
+    - `dict`: std::unordered_map<> (#include <unordered_map>)
+    - `set`: std::unordered_set<> (#include <unordered_set>)
 - None:
     - For float, can use NAN (#include <cmath>) and use std::isnan(number) to check if it’s NAN
     - For string, just use empty string and use str.empty() to check if it’s empty
+
 ## Define Strings
+
 - Python
 {{< highlight python>}}
 s = "this is a string"
@@ -336,7 +369,9 @@ using namespace std::string_literals;
 auto z = "has\0zero"s; // add "s" suffix, z is std::string
 auto z = "has\0zero"; // z is char* pointer
 {{< / highlight >}}
+
 ## String Methods
+
 - Python
 {{< highlight python>}}
 t = "test str"
@@ -363,7 +398,9 @@ auto u = t.substr(1);
 std::transform(t.begin(), t.end(), t.begin(), std::tolower);
 // This does not work in unicode
 {{< / highlight >}}
+
 ## List (dynamic array)
+
 - Python
 {{< highlight python>}}
 a = [1, 2, 3]
@@ -391,7 +428,9 @@ auto tmp = a[2];
 auto tmp2 = b[1]; // copy the element!
 auto& tmp2 = b[1]; // reference the element
 {{< / highlight >}}s
+
 ## Set
+
 - Python
 {{< highlight python>}}
 a = set()
@@ -415,7 +454,9 @@ a.erase("2");
 if (a.find("4") != a.end()){
 ...}
 {{< / highlight >}}
+
 ## Dict
+
 - Python
 {{< highlight python>}}
 d = {"a": 1, "b": 2}
@@ -435,7 +476,9 @@ std::unordered_map<std::string, int>> nested = {
 {"a": {{"a1", 0.5}}},
 {"b": {{"b1", 0.3}, {"b2", 0.4}},};
 {{< / highlight >}}
+
 ## Common Dict Operations
+
 - Python
 {{< highlight python>}}
 d["new_key"] = 100

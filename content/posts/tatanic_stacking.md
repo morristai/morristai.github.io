@@ -2,7 +2,7 @@
 title: "Kaggle Tatanic Stacking 學習模型整理"
 date: 2017-08-17T11:51:08+08:00
 draft: false
-tags: ["Kaggle", "stacking", "ML",]
+tags: ["kaggle", "stacking"]
 ---
 
 在看過[Kaggle](https://google.com)上Titanic的一些kernels，其中不乏用SVM, RandomForest, LogisticRegression, etc. 而這Kernel有趣的是他利用6種不同的learning models去建模。\

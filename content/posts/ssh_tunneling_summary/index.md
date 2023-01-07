@@ -2,7 +2,7 @@
 title: "SSH Tunneling Summary"
 date: 2020-12-10T10:04:55+08:00
 draft: false
-tags: ["port forwarding", "ssh", "network"]
+tags: ["port forwarding", "ssh", "networking"]
 ---
 
 There are three types of SSH port forwarding:
@@ -76,7 +76,7 @@ Target Server: 192.168.1.100:8080
 
 ## Dynamic Port Forwarding
 
-Start a SOCKS proxy server on the SSH Server, and at the same time open `bind_address:port` on the Client to wait for the connection. When someone connects, transfer all the data to this SOCKS proxy server and start the corresponding connection request. Ordinary Port Forwarding can only forward one Port on one IP. When you have many IPs or many Ports that you want to forward, you can only open them one by one, which is very inconvenient. In contrast, Dynamic Port Forwarding can directly set up a proxy server. As long as the program you use supports the SOCKS protocol, you can forward it however you want through this proxy server.
+Start a SOCKS proxy server on the SSH Server, and at the same time open `bind_address:port` on the Client to wait for the connection. When someone connects, transfer all the data to this SOCKS proxy server and start the corresponding connection request. Ordinary Port Forwarding can only forward one Port on one IP. When you have many IPs or many Ports that you want to forward, you can only open them one by one, which is very inconvenient. In contrast, Dynamic Port Forwarding can directly set up a proxy server. As long as the program you use supports the SOCKS protocol, you can forward it whenever you want through this proxy server.
 
 ```bash
 ssh -D [bind_address:]<port> <SSH Server>
@@ -95,4 +95,4 @@ ssh -D [bind_address:]<port> <SSH Server>
 - `-N` Do not execute a remote command. This is useful for just forwarding ports (protocol version 2 only).
 - `-f` Let the ssh command execute in the background, allowing you to continue doing things with the shell. Usually used with `-N` above.
 
-(Ref: [https://johnliu55.tw/ssh-tunnel.html](https://johnliu55.tw/ssh-tunnel.html))
+Ref: [https://johnliu55.tw/ssh-tunnel.html](https://johnliu55.tw/ssh-tunnel.html)
