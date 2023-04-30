@@ -1,0 +1,49 @@
+{
+  "name": "notion-doit",
+  "version": "0.0.1",
+  "description": "Use Notion as the CMS for your Hugo DoIt site",
+  "main": "src/index.ts",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/Hugo-DoIt/Notion-DoIt",
+  "bugs": {
+    "url": "https://github.com/Hugo-DoIt/Notion-DoIt/issues"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8"
+  },
+  "scripts": {
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "start": "ts-node src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "Notion",
+    "Hugo",
+    "theme",
+    "DoIt"
+  ],
+  "author": "HEIGE-PCloud",
+  "dependencies": {
+    "@notionhq/client": "^2.2.3",
+    "@pclouddev/notion-to-markdown": "^2.7.1",
+    "dotenv": "^16.0.3",
+    "front-matter": "^4.0.2",
+    "fs-extra": "^11.1.1",
+    "katex": "^0.16.4",
+    "yaml": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/katex": "^0.16.0",
+    "@types/node": "^18.15.11",
+    "prettier": "^2.8.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3",
+    "vitest": "^0.29.8"
+  }
+}
