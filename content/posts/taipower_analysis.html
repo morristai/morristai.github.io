@@ -1,0 +1,54 @@
+---
+title: "台電跳電分析"
+date: 2018-08-29T11:47:17+08:00
+draft: false
+tags: ["pandas", "plotly", "EDA"]
+---
+
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <li>使用資料<ol>
+            <li>台灣電力公司_近三年每日尖峰備轉容量率.csv (<a href="http://data.gov.tw/node/25850">http://data.gov.tw/node/25850</a>)</li>
+            <li>台灣電力公司_本年度每日尖峰備轉容量率.csv (<a href="http://data.gov.tw/node/24945">http://data.gov.tw/node/24945</a>)</li>
+            <li>台灣電力公司_過去電力供需資訊.csv (<a href="https://data.gov.tw/dataset/19995">https://data.gov.tw/dataset/19995</a>)
+            </li>
+        </ol>
+    </li>
+    <div>
+        <a href="https://plot.ly/~diaper151/2/?share_key=wRLOEfuZlw3zH4UXgiSYCb" target="_blank" title="台電備轉容量率"
+            style="display: block; text-align: center;"><img
+                src="https://plot.ly/~diaper151/2.png?share_key=wRLOEfuZlw3zH4UXgiSYCb" alt="台電備轉容量率"
+                style="max-width: 100%;width: 600px;" width="600"
+                onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+        <script data-plotly="diaper151:2" sharekey-plotly="wRLOEfuZlw3zH4UXgiSYCb" src="https://plot.ly/embed.js" async>
+        </script>
+    </div>
+
+
+    <div>
+        <a href="https://plot.ly/~diaper151/4/?share_key=2UdGALS1MIDbxdBFbFbWnM" target="_blank" title="工業用電+民生用電(百萬度)"
+            style="display: block; text-align: center;"><img
+                src="https://plot.ly/~diaper151/4.png?share_key=2UdGALS1MIDbxdBFbFbWnM" alt="工業用電+民生用電(百萬度)"
+                style="max-width: 100%;width: 600px;" width="600"
+                onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+        <script data-plotly="diaper151:4" sharekey-plotly="2UdGALS1MIDbxdBFbFbWnM" src="https://plot.ly/embed.js" async>
+        </script>
+    </div>
+    <li>觀察結果<ol>
+            <li>首先台電並沒有提供跳電或停電紀錄，目前所知道最有可能導致跳電的數據為備轉容量(預留的發電量)，當被轉容量過低則可能導致供電不足。</li>
+            <li>新聞指出今年五月頻繁跳電(<a href="http://www.storm.mg/article/477780">http://www.storm.mg/article/477780</a>
+                )，而五月也是備轉容量率低於10%累積天數之首。現在我們看看台電實際數據。</li>
+            <li>以歷年平均備轉容量率來看，2018為目前最低的年份(6%以下為供電警戒)，但是2018尚未結束，所以我們用時間圖表看過去同時期的情況。</li>
+            <li>從年初到現在的備轉容量率較往年偏低，所以如果去年前年都有跳電的紀錄，今年也有可能會跳電。</li>
+            <li>分析過往用電紀錄，可以看到10月初是整體耗電最凶的時候，如果不算計畫性工作停電的話，今年最有可能在10月發生跳電。</li>
+        </ol>
+    </li>
+</body>
+
+</html>
