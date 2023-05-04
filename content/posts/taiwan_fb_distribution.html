@@ -1,0 +1,211 @@
+---
+title: "台灣社群年齡分布"
+date: 2018-07-25T11:52:49+08:00
+draft: false
+tags: ["pandas", "plotly", "EDA"]
+---
+
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    看到公開資料隨手來分析一下台灣社群年齡比例
+    <h3>表格一為台灣各年齡層Facebook用戶數量</h3>
+    <table class="dataframe" border="1">
+        <thead>
+            <tr>
+                <th>年齡</th>
+                <th>人數</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>13-17</td>
+                <td>2372779</td>
+            </tr>
+            <tr>
+                <td>18-24</td>
+                <td>4898337</td>
+            </tr>
+            <tr>
+                <td>25-34</td>
+                <td>3151068</td>
+            </tr>
+            <tr>
+                <td>35-44</td>
+                <td>2557531</td>
+            </tr>
+            <tr>
+                <td>45-54</td>
+                <td>1842607</td>
+            </tr>
+            <tr>
+                <td>55-64</td>
+                <td>759609</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>表格二為18-24歲用戶，2017年最常互動之媒體排行</h3>
+    <table class="dataframe" border="1">
+        <thead>
+            <tr>
+                <th>粉絲頁名稱</th>
+                <th>不重複互動人數</th>
+                <th>18-24歲用戶佔該媒體總互動人口比例</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>東森新聞</td>
+                <td>2114552</td>
+                <td>0.3068</td>
+            </tr>
+            <tr>
+                <td>ETtoday新聞雲</td>
+                <td>1759703</td>
+                <td>0.3216</td>
+            </tr>
+            <tr>
+                <td>ETtoday星光雲</td>
+                <td>1518584</td>
+                <td>0.3763</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>表格三為25-34歲用戶，2017年最常互動之媒體排行</h3>
+    <table class="dataframe" border="1">
+        <thead>
+            <tr>
+                <th>粉絲頁名稱</th>
+                <th>不重複互動人數</th>
+                <th>25-34歲用戶佔該媒體總互動人口比例</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>東森新聞</td>
+                <td>1278274</td>
+                <td>0.1855</td>
+            </tr>
+            <tr>
+                <td>ETtoday新聞雲</td>
+                <td>1107137</td>
+                <td>0.2023</td>
+            </tr>
+            <tr>
+                <td>蘋果日報 台灣</td>
+                <td>1008543</td>
+                <td>0.2362</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>表格四為55-64歲用戶，2017年最常互動之媒體排行</h3>
+    <table class="dataframe" border="1">
+        <thead>
+            <tr>
+                <th>粉絲頁名稱</th>
+                <th>不重複互動人數</th>
+                <th>55-64歲用戶佔該媒體總互動人口比例</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>大紀元 epochtimes.com</td>
+                <td>150330</td>
+                <td>0.1979</td>
+            </tr>
+            <tr>
+                <td>東森新聞</td>
+                <td>99128</td>
+                <td>0.1305</td>
+            </tr>
+            <tr>
+                <td>ETtoday新聞雲</td>
+                <td>81543</td>
+                <td>0.1073</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>其中，互動表示Facebook用戶對該媒體粉絲專頁之貼文按讚、愛心、笑臉、憤怒、悲傷等表情符號，不重複互動人數代表每位用戶不論與該媒體多少篇貼文互動，都僅統計為1不重複互動人數。</p>
+    <p>以表格三25-34歲台灣Facebook使用者最愛媒體中東森新聞為例，代表在2017年東森新聞發出的全部貼文中，共有1278274位屬於25-34歲之用戶與這些貼文互動。</p>
+    <p>並且25-34歲人口佔所有與東森新聞互動者中的18.55%，(即25-34歲用戶佔該媒體總互動人口比例一欄)。</p>
+
+    <div>
+        <a href="https://plot.ly/~diaper151/6/?share_key=DWRTwO60HJArmCCzFk2K9t" target="_blank" title="台灣臉書年齡分布"
+            style="display: block; text-align: center;"><img
+                src="https://plot.ly/~diaper151/6.png?share_key=DWRTwO60HJArmCCzFk2K9t" alt="台灣臉書年齡分布"
+                style="max-width: 100%;width: 600px;" width="600"
+                onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+        <script data-plotly="diaper151:6" sharekey-plotly="DWRTwO60HJArmCCzFk2K9t" src="https://plot.ly/embed.js" async>
+        </script>
+    </div>
+
+    <table class="dataframe" border="1">
+        <thead>
+            <tr>
+                <th>年齡</th>
+                <th>東森新聞(%)</th>
+                <th>ETtoday新聞雲(%)</th>
+                <th>東森新聞(人數)</th>
+                <th>ETtoday新聞雲(人數)</th>
+                <th>東森新聞佔使用者比例</th>
+                <th>ETtoday新聞雲佔使用者比例</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>18-24</td>
+                <td>0.3068</td>
+                <td>0.3216</td>
+                <td>2114552</td>
+                <td>1759703</td>
+                <td>0.431688</td>
+                <td>0.359245</td>
+            </tr>
+            <tr>
+                <td>25-34</td>
+                <td>0.1855</td>
+                <td>0.2023</td>
+                <td>1278274</td>
+                <td>1107137</td>
+                <td>0.405664</td>
+                <td>0.351353</td>
+            </tr>
+            <tr>
+                <td>55-64</td>
+                <td>0.1305</td>
+                <td>0.1073</td>
+                <td>99128</td>
+                <td>81543</td>
+                <td>0.130499</td>
+                <td>0.107349</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td>0.3772</td>
+                <td>0.3688</td>
+                <td>3400327</td>
+                <td>2523330</td>
+                <td>NaN</td>
+                <td>NaN</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a href="https://plot.ly/~diaper151/8/?share_key=9W7D4pjfpetLknbx1jrlYR" target="_blank" title="東森用戶年齡占比"
+            style="display: block; text-align: center;"><img
+                src="https://plot.ly/~diaper151/8.png?share_key=9W7D4pjfpetLknbx1jrlYR" alt="東森用戶年齡占比"
+                style="max-width: 100%;width: 600px;" width="600"
+                onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+        <script data-plotly="diaper151:8" sharekey-plotly="9W7D4pjfpetLknbx1jrlYR" src="https://plot.ly/embed.js" async>
+        </script>
+    </div>
+
+</body>
+
+</html>

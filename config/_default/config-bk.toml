@@ -1,0 +1,107 @@
+baseURL = 'https://morristai.github.io'
+languageCode = 'en-us'
+title = "300.Watts"
+# theme = "PaperMod"
+theme = "DoIt"
+paginate = 5
+
+enableInlineShortcodes = true
+enableRobotsTXT = true
+enableEmoji = true
+# pygmentsUseClasses = true
+# buildDrafts = false
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  ShowShareButtons = true
+  ShowReadingTime = true
+  comments = true
+  displayFullLangName = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowToc = true
+
+  [params.gitalk]
+    owner = "morristai" # GitHub ID
+    repo = "morristai.github.io.comments"
+    clientId = "c39ea41a62ca2985fa6a"
+    clientSecret = "ce5b1903b1ea9eb8bbb83f363d44935965b155f1"
+
+  [params.homeInfoParams]
+    Title = "Rust, Cloud Native, and Backend/System Dev"
+    Content = """Hello and welcome to Morris Tai Blog! I am a Cloud Developer at [Trend Micro](https://www.trendmicro.com/),
+     I try to write articles that are based on my work and observations, and I aim to present the information in a way that is easy to understand.
+      The main focus of my articles is on topics like [Rust](https://www.rust-lang.org/), Cloud (AWS/Azure), and Data Platforms ([Kafka](https://kafka.apache.org/), [Flink](https://flink.apache.org/), etc.).
+    """
+
+  [[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/morristai"
+
+  [[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/morris-tai-509306118"
+
+
+  [[params.socialIcons]]
+  name = "Rss"
+  url = "index.xml"
+
+  [params.editPost]
+  URL = "https://github.com/morristai/morristai.github.io/tree/main/content"
+  Text = "Suggest Changes"
+  appendFilePath = true
+
+  [params.assets]
+  disableHLJS = true
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    [languages.en.taxonomies]
+      category = "categories"
+      tag = "tags"
+      series = "series"
+    [languages.en.menu]
+
+      [[languages.en.menu.main]]
+        name = "Archive"
+        url = "archives"
+        weight = 5
+
+      [[languages.en.menu.main]]
+        name = "Search"
+        url = "search/"
+        weight = 10
+
+      [[languages.en.menu.main]]
+        name = "Tags"
+        url = "tags/"
+        weight = 10
+
+      [[languages.en.menu.main]]
+        name = "About.Me"
+        url = "about/"
+        weight = 10
+
+      # [[languages.en.menu.main]]
+      #   name = "Resume"
+      #   url = "/docs/resume_morris_tai.pdf"
+      #   weight = 10
+
+      # [[languages.en.menu.main]]
+      #   name = "WiKi"
+      #   url = "https://github.com/adityatelange/hugo-PaperMod/wiki/"
+
+      [[languages.en.menu.main]]
+        name = "Discord"
+        url = "https://discordapp.com/users/434324950950608898"
+
+[markup.goldmark.parser.attribute]
+  block = true
+  title = true
