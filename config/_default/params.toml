@@ -18,7 +18,7 @@ fingerprint = ""
 dateFormat = "2006-01-02"
 # website images for Open Graph and Twitter Cards
 # 网站图片, 用于 Open Graph 和 Twitter Cards
-images = ["/images/avatar.webp"]
+images = ["/images/avatar.jpg"]
 # enable PWA
 # 开启 PWA 支持
 enablePWA = false
@@ -80,7 +80,7 @@ copyright = true
 author = true
 # site creation time
 # 网站创立年份
-since = 2019
+since = 2018
 # ICP info only in China (HTML format is supported)
 # ICP 备案信息，仅在中国使用 (支持 HTML 格式)
 icp = ""
@@ -148,6 +148,7 @@ fontawesome = true
 # whether to show link to Raw Markdown content of the content
 # 是否显示原始 Markdown 文档内容的链接
 linkToMarkdown = true
+# ============================== TOOD ==============================
 # configure the link to view source the post
 # 配置文章原始文件的链接
 linkToSource = "https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/{path}"
@@ -163,6 +164,7 @@ linkToEdit = "https://github.com/HEIGE-PCloud/DoIt/edit/main/exampleSite/content
 linkToReport = "https://github.com/HEIGE-PCloud/DoIt/issues/new?title=[bug]%20{title}&body=|Field|Value|%0A|-|-|%0A|Title|{title}|%0A|Url|{url}|%0A|Filename|https://github.com/HEIGE-PCloud/DoIt/blob/main/exampleSite/content/{path}|"
 # https://github.com/user/repo/issues/new?title=[bug]%20{title}&body=|Field|Value|%0A|-|-|%0A|Title|{title}|%0A|Url|{url}|%0A|Filename|https://github.com/user/repo/blob/main/{path}|"
 # https://gitlab.com/user/repo/-/issues/new?issue[title]=[bug]%20{title}&issue[description]=|Field|Value|%0A|-|-|%0A|Title|{title}|%0A|Url|{url}|%0A|Filename|https://gitlab.com/user/repo/-/edit/main/{path}|
+# ============================== TOOD ==============================
 # whether to show the full text content in RSS
 # 是否在 RSS 中显示全文内容
 rssFullText = false
@@ -465,7 +467,7 @@ images = []
 # Publisher info
 # 出版者信息
 [page.seo.publisher]
-logoUrl = "/images/avatar.webp"
+logoUrl = "/images/avatar.jpg"
 name = "xxxx"
 # Related content config
 # 相关文章推荐配置
