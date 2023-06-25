@@ -93,7 +93,7 @@
     # site description
     description = "The official documentation for the Hugo DoIt theme"
     # site keywords
-    keywords = ["Theme", "Hugo"]
+    keywords = ["rust", "database", "data streaming", "distributed system", "scalability", "infrastructure"]
     # App icon config
     [en.params.app]
       # optional site title override for the app when added to an iOS home screen or Android launcher
@@ -106,11 +106,10 @@
       iconColor = "#5bbad5"
       # Windows v8-10 tile color
       tileColor = "#da532c"
-    # TODO: Search config
     [en.params.search]
       enable = true
       # type of search engine ("lunr", "algolia", "fuse")
-      type = "algolia"
+      type = "fuse"
       # max index length of the chunked content
       contentLength = 4000
       # placeholder of the search bar
@@ -123,10 +122,10 @@
       highlightTag = "em"
       # whether to use the absolute URL based on the baseURL in search index
       absoluteURL = false
-      [en.params.search.algolia]
-        index = "en_index"
-        appID = "5YGRNRQK1G"
-        searchKey = "0ff6874805de24b84aa1d5ebccad56cd"
+      # [en.params.search.algolia]
+      #   index = "en_index"
+      #   appID = "5YGRNRQK1G"
+      #   searchKey = "0ff6874805de24b84aa1d5ebccad56cd"
       [en.params.search.fuse]
         # https://fusejs.io/api/options.html
         isCaseSensitive = false
