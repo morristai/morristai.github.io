@@ -9,7 +9,7 @@
   # default amount of posts in each pages
   paginate = 12
   # [UA-XXXXXXXX-X] google analytics code (replaced by params.analytics.google)
-  googleAnalytics = ""
+  googleAnalytics = "G-HSER3QLKLR"
   # copyright description used only for seo schema
   copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
   # Menu config
@@ -33,54 +33,54 @@
       url = "/tags/"
       title = ""
       weight = 2
-    [[en.menu.main]]
-      identifier = "categories"
-      pre = ""
-      post = ""
-      name = "Categories"
-      url = "/categories/"
-      title = ""
-      weight = 3
-    [[en.menu.main]]
-      identifier = "series"
-      pre = ""
-      post = ""
-      name = "Series"
-      url = "/series/"
-      title = ""
-      weight = 4
-    [[en.menu.main]]
-      identifier = "authors"
-      pre = ""
-      post = ""
-      name = "Authors"
-      url = "/authors/"
-      title = ""
-      weight = 5
-    [[en.menu.main]]
-      identifier = "showcase"
-      pre = ""
-      post = ""
-      name = "Showcase"
-      url = "/showcase/"
-      title = ""
-      weight = 6
-    [[en.menu.main]]
-      identifier = "documentation"
-      pre = ""
-      post = ""
-      name = "Docs"
-      url = "/categories/documentation/"
-      title = ""
-      weight = 7
+    # [[en.menu.main]]
+    #   identifier = "categories"
+    #   pre = ""
+    #   post = ""
+    #   name = "Categories"
+    #   url = "/categories/"
+    #   title = ""
+    #   weight = 3
+    # [[en.menu.main]]
+    #   identifier = "series"
+    #   pre = ""
+    #   post = ""
+    #   name = "Series"
+    #   url = "/series/"
+    #   title = ""
+    #   weight = 4
+    # [[en.menu.main]]
+    #   identifier = "authors"
+    #   pre = ""
+    #   post = ""
+    #   name = "Authors"
+    #   url = "/authors/"
+    #   title = ""
+    #   weight = 5
+    # [[en.menu.main]]
+    #   identifier = "showcase"
+    #   pre = ""
+    #   post = ""
+    #   name = "Showcase"
+    #   url = "/showcase/"
+    #   title = ""
+    #   weight = 6
+    # [[en.menu.main]]
+    #   identifier = "documentation"
+    #   pre = ""
+    #   post = ""
+    #   name = "Docs"
+    #   url = "/categories/documentation/"
+    #   title = ""
+    #   weight = 7
     [[en.menu.main]]
       identifier = "about"
       pre = ""
       post = ""
       name = "About"
-      url = "/about"
+      url = "/about/me"
       title = ""
-      weight = 8
+      weight = 3
     [[en.menu.main]]
       identifier = "github"
       pre = "<i class='fab fa-github fa-fw'></i>"
@@ -88,12 +88,12 @@
       name = ""
       url = "https://github.com/morristai"
       title = "GitHub"
-      weight = 9
+      weight = 4
   [en.params]
     # site description
     description = "The official documentation for the Hugo DoIt theme"
     # site keywords
-    keywords = ["Theme", "Hugo"]
+    keywords = ["rust", "database", "data streaming", "distributed system", "scalability", "infrastructure"]
     # App icon config
     [en.params.app]
       # optional site title override for the app when added to an iOS home screen or Android launcher
@@ -106,11 +106,10 @@
       iconColor = "#5bbad5"
       # Windows v8-10 tile color
       tileColor = "#da532c"
-    # Search config
-    [en.params.search]
+    [en.params.search]  # TODO: Fix search
       enable = true
       # type of search engine ("lunr", "algolia", "fuse")
-      type = "algolia"
+      type = "fuse"
       # max index length of the chunked content
       contentLength = 4000
       # placeholder of the search bar
@@ -123,10 +122,10 @@
       highlightTag = "em"
       # whether to use the absolute URL based on the baseURL in search index
       absoluteURL = false
-      [en.params.search.algolia]
-        index = "en_index"
-        appID = "5YGRNRQK1G"
-        searchKey = "0ff6874805de24b84aa1d5ebccad56cd"
+      # [en.params.search.algolia]
+      #   index = "en_index"
+      #   appID = "5YGRNRQK1G"
+      #   searchKey = "0ff6874805de24b84aa1d5ebccad56cd"
       [en.params.search.fuse]
         # https://fusejs.io/api/options.html
         isCaseSensitive = false
@@ -152,98 +151,98 @@
         # title shown in home page (HTML format is supported)
         title = ""
         # subtitle shown in home page
-        subtitle = "Rust, Cloud Native, and Backend/System Dev"
+        subtitle = "\"There is only one heroism in the world: to see the world as it is, and to love it.\" - Romain Rolland"
         # whether to use typeit animation for subtitle
         typeit = false
         # whether to show social links
-        social = false
+        social = true
         # disclaimer (HTML format is supported)
         disclaimer = ""
       # Home page posts
       [en.params.home.posts]
         enable = true
         # special amount of posts in each home posts page
-        paginate = 7
+        paginate = 5
     # Social config in home page
     [en.params.social]
-      GitHub = "xxxx"
-      Linkedin = ""
-      Twitter = "xxxx"
-      Instagram = ""
-      Facebook = "xxxx"
-      Telegram = "xxxx"
-      Medium = ""
-      Gitlab = ""
-      Youtubelegacy = "xxxx"
-      Youtubecustom = ""
-      Youtubechannel = ""
-      Tumblr = ""
-      Quora = ""
-      Keybase = ""
-      Pinterest = ""
-      Reddit = ""
-      Codepen = ""
-      FreeCodeCamp = ""
-      Bitbucket = ""
-      Stackoverflow = ""
-      Weibo = ""
-      Odnoklassniki = ""
-      VK = ""
-      Flickr = ""
-      Xing = ""
-      Snapchat = ""
-      Soundcloud = ""
-      Spotify = ""
-      Bandcamp = ""
-      Paypal = ""
-      Fivehundredpx = ""
-      Mix = ""
-      Goodreads = ""
-      Lastfm = ""
-      Foursquare = ""
-      Hackernews = ""
-      Kickstarter = ""
-      Patreon = ""
-      Steam = ""
-      Twitch = ""
-      Strava = ""
-      Skype = ""
-      Whatsapp = ""
-      Zhihu = ""
-      Douban = ""
-      Angellist = ""
-      Slidershare = ""
-      Jsfiddle = ""
-      Deviantart = ""
-      Behance = ""
-      Dribbble = ""
-      Wordpress = ""
-      Vine = ""
-      Googlescholar = ""
-      Researchgate = ""
-      Thingiverse = ""
-      Devto = ""
-      Gitea = ""
-      XMPP = ""
-      Matrix = ""
-      Bilibili = ""
-      ORCID = ""
-      QQ = ""
-      QQGroup = ""
-      Liberapay = "xxx"
-      Ko-Fi = "xxx"
-      BuyMeACoffee = ""
-      Linktree = ""
-      Email = "xxxx@xxxx.com"
+      GitHub = "morristai"
+      Twitter = "diaper151"
+      Instagram = "diaper151"
+      Facebook = "morristai01"
+      Telegram = "diaper151"
+      Reddit = "diaper151"
+      Linkedin = "morris-tai-509306118"
+      # Medium = ""
+      # Gitlab = ""
+      # Youtubelegacy = "xxxx"
+      # Youtubecustom = ""
+      # Youtubechannel = ""
+      # Tumblr = ""
+      # Quora = ""
+      # Keybase = ""
+      # Pinterest = ""
+      # Codepen = ""
+      # FreeCodeCamp = ""
+      # Bitbucket = ""
+      # Stackoverflow = ""
+      # Weibo = ""
+      # Odnoklassniki = ""
+      # VK = ""
+      # Flickr = ""
+      # Xing = ""
+      # Snapchat = ""
+      # Soundcloud = ""
+      # Spotify = ""
+      # Bandcamp = ""
+      # Paypal = ""
+      # Fivehundredpx = ""
+      # Mix = ""
+      # Goodreads = ""
+      # Lastfm = ""
+      # Foursquare = ""
+      # Hackernews = ""
+      # Kickstarter = ""
+      # Patreon = ""
+      # Steam = ""
+      # Twitch = ""
+      # Strava = ""
+      # Skype = ""
+      # Whatsapp = ""
+      # Zhihu = ""
+      # Douban = ""
+      # Angellist = ""
+      # Slidershare = ""
+      # Jsfiddle = ""
+      # Deviantart = ""
+      # Behance = ""
+      # Dribbble = ""
+      # Wordpress = ""
+      # Vine = ""
+      # Googlescholar = ""
+      # Researchgate = ""
+      # Thingiverse = ""
+      # Devto = ""
+      # Gitea = ""
+      # XMPP = ""
+      # Matrix = ""
+      # Bilibili = ""
+      # ORCID = ""
+      # QQ = ""
+      # QQGroup = ""
+      # Liberapay = "xxx"
+      # Ko-Fi = "xxx"
+      # BuyMeACoffee = ""
+      # Linktree = ""
+      Email = "morristai01@gmail.com"
       RSS = true
       [en.params.social.Mastodon]
-        id = "@xxxx"
-        prefix = "https://mastodon.technology/"
-      [en.params.social.Diaspora]
-        id = "@xxxx"
-        prefix = "https://yyyy/"
+        id = "@morristai"
+        prefix = "https://hachyderm.io/"
+      # [en.params.social.Diaspora]
+      #   id = "@xxxx"
+      #   prefix = "https://yyyy/"
     # Sponsor config
-    [en.params.sponsor]
-      enable = false
-      bio = "If you find this post helpful, please consider sponsoring."
-      link = "https://github.com/morristai"
+    # [en.params.sponsor]
+    #   enable = false
+    #   bio = "If you find this post helpful, please consider sponsoring."
+    #   link = "https://github.com/morristai"
