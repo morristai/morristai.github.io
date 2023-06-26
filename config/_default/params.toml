@@ -7,7 +7,7 @@ title = "300.Watts"
 version = "0.4.X"
 # site default theme ("light", "dark", "black", "auto")
 # 网站默认主题 ("light", "dark", "black", "auto")
-defaultTheme = "auto"
+defaultTheme = "light"
 # public git repo url only then enableGitInfo is true
 # 公共 git 仓库路径，仅在 enableGitInfo 设为 true 时有效
 gitRepo = "https://github.com/morristai"
@@ -44,7 +44,7 @@ themeChangeMode = "select"
 # 页面头部导航栏标题配置
 [header.title]
 # URL of the LOGO
-# LOGO 的 URL
+# LOGO 的 URL TODO: small crab?
 logo = ""
 # title name
 # 标题名称
@@ -516,10 +516,10 @@ yandex = ""
 [seo]
 # image URL
 # 图片 URL
-image = "/images/Apple-Devices-Preview.png"
+image = "/images/avator_icon.png"
 # thumbnail URL
 # 缩略图 URL
-thumbnailUrl = "/images/screenshot.png"
+thumbnailUrl = "/images/avator_icon.png"
 
 # Analytics config
 # 网站分析配置
