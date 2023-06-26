@@ -78,7 +78,7 @@
       pre = ""
       post = ""
       name = "About"
-      url = "/about"
+      url = "/about/me"
       title = ""
       weight = 3
     [[en.menu.main]]
@@ -106,7 +106,7 @@
       iconColor = "#5bbad5"
       # Windows v8-10 tile color
       tileColor = "#da532c"
-    [en.params.search]
+    [en.params.search]  # TODO: Fix search
       enable = true
       # type of search engine ("lunr", "algolia", "fuse")
       type = "fuse"
