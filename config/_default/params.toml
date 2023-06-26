@@ -469,7 +469,7 @@ images = []
 # 出版者信息
 [page.seo.publisher]
 logoUrl = "/images/avatar.jpg"
-name = "xxxx"
+name = "morristai"
 # Related content config
 # 相关文章推荐配置
 [page.related]
