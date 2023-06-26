@@ -3,7 +3,8 @@
 title = "300.Watts"
 # DoIt theme version
 # DoIt 主题版本
-version = "0.3.X"
+# https://github.com/HEIGE-PCloud/DoIt/releases
+version = "0.4.X"
 # site default theme ("light", "dark", "black", "auto")
 # 网站默认主题 ("light", "dark", "black", "auto")
 defaultTheme = "auto"
@@ -56,7 +57,7 @@ pre = "<i class='fa-solid fa-person-biking'></i>"
 post = ""
 # whether to use typeit animation for title name
 # 是否为标题显示打字机动画
-typeit = false
+typeit = true
 
 # Footer config
 # 页面底部信息配置
@@ -67,7 +68,7 @@ enable = true
 custom = ''
 # whether to show Hugo and theme info
 # 是否显示 Hugo 和主题信息
-hugo = true
+hugo = false
 # Hosted on (HTML format is supported)
 # 托管服务信息 (支持 HTML 格式)
 # <a title="Github Pages" href="https://docs.github.com/en/pages/" target="_blank" rel="noopener noreffer">GitHub Pages</a>
@@ -523,10 +524,10 @@ thumbnailUrl = "/images/screenshot.png"
 # Analytics config
 # 网站分析配置
 [analytics]
-enable = false
+enable = true
 # Google Analytics
 [analytics.google]
-id = ""
+id = "G-HSER3QLKLR"
 # whether to anonymize IP
 # 是否匿名化用户 IP
 anonymizeIP = true
