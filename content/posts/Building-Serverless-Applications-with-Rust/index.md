@@ -113,7 +113,7 @@ I've recently been working on rewriting our small service with Rust for fun. One
 Here's a diagram showing the simplified architecture of one of our Lambda services.
 
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/81b1fa3b-1fab-4c70-8808-dd877657faee/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202757Z&X-Amz-Expires=3600&X-Amz-Signature=9167cdc6971f3e73c3147c9e68370bd43baed1699c7776990d51b3311161e693&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](images/lambda_arch.png)
 
 
 In order to do that, I have to research Rust libraries that bring additional functionality to existing services, such as asynchronous ecosystems, Protocol Buffers, and cloud SDKs. Luckily, I found that the Rust community has been quite serious about porting Rust to the cloud, especially for AWS. Some examples include:
@@ -262,11 +262,10 @@ Here, we compared our Rust application to the Python application, and the size i
 
 > 💡 Disclaimer: The Lambda function has not fully implemented all of our existing functions, and the testing scenario is not rigorous.
 
-
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5aa5318a-f793-4ffb-8538-34b3ee7bf8ba/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202759Z&X-Amz-Expires=3600&X-Amz-Signature=995cbcb5c231e0e17b0319df21e2a7e9296b7e8289e97d4440c73a8b3ae0880f&X-Amz-SignedHeaders=host&x-id=GetObject)
-
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/65878174-9789-4dd6-a9b5-d4c3f7d4a4c2/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202759Z&X-Amz-Expires=3600&X-Amz-Signature=4517b15c00fac4c54449b0ae553c00b10a66029cd65cc0226fab11b0ebe69eb0&X-Amz-SignedHeaders=host&x-id=GetObject)
-
+<div style="display:flex;">
+  <img src="images/python_size.png" style="width:50%; margin-right:10px;">
+  <img src="images/rust_size.png" style="width:50%; margin-left:10px;">
+</div>
 
 ### Performance
 
@@ -274,10 +273,9 @@ Here, we compared our Rust application to the Python application, and the size i
 The performance difference between the Rust and Python applications is about 8 times faster, although there are some duration spikes in Rust. I think this might be due to the Rust runtime not yet being stable in the Lambda environment. However, this is just a rough test, and no serious stress test has been applied.
 
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4ab9d899-4f6a-42ee-805c-5677c84811ab/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202757Z&X-Amz-Expires=3600&X-Amz-Signature=3558bea3602558da629c567262297c27ad5b14c5091cf0688b5493427a5250fb&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](images/python_speed.png)
 
-
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d2e5417b-aed0-4350-84be-59f4c9f7c495/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202757Z&X-Amz-Expires=3600&X-Amz-Signature=b192bf6f9bf25a0d7921b453c69af050b1ff40fdc0c36d34da26f21dee2bd60a&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](images/rust_speed.png)
 
 
 ## Take Away
@@ -292,5 +290,5 @@ After experimenting with Rust on AWS Lambda, I found the development experience 
 After failing with Prost decode with length-delimited proto file, I will try to debug it after we upgrade our schema from proto2 to proto3 and see if there is a bug inside our schema or if it's a file format error. (Since Python can successfully decode, I think there might be a bug inside the Prost crate, but I'm not sure.)
 
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/302c4fef-2e30-4902-b720-9a0da65d548a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202757Z&X-Amz-Expires=3600&X-Amz-Signature=9236e3e2b3f41e841bbce15d737e3dad032d8fa1bdfb36f2d983cf179b8069c6&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](images/unsolved.png)
 
