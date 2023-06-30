@@ -61,12 +61,15 @@ jobs:
         id: pages
         uses: actions/configure-pages@v2
 
+      # - name: build post from notion
+      #   env:
+      #     NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      #   run: |
+      #     npm install
+      #     npm start
+
       - name: Build with Hugo
-        env: # Or as an environment variable
-         NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: |
-          npm install
-          npm start
           hugo
 
       # - name: Commit updated content

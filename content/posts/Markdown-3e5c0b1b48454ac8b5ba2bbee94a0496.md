@@ -73,8 +73,9 @@ NOTION_METADATA:
           plain_text: "Markdown"
           href: null
   url: "https://www.notion.so/Markdown-3e5c0b1b48454ac8b5ba2bbee94a0496"
-UPDATE_TIME: "2023-05-08T20:09:47.683Z"
-EXPIRY_TIME: "2023-05-08T21:09:26.858Z"
+  public_url: null
+UPDATE_TIME: "2023-06-30T20:28:47.245Z"
+EXPIRY_TIME: "2023-06-30T21:28:24.162Z"
 
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
@@ -206,7 +207,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis commodo mau
 ### Internal
 
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6942fdc2-293f-402d-b35d-ff8c4c74bc98/photo-1470225620780-dba8ba36b745.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230508%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230508T200926Z&X-Amz-Expires=3600&X-Amz-Signature=ea6d130a4d8e43a69d09c8221ee60fcee4a14e3fa3b0fb9a32cdd39693df266b&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6942fdc2-293f-402d-b35d-ff8c4c74bc98/photo-1470225620780-dba8ba36b745.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202824Z&X-Amz-Expires=3600&X-Amz-Signature=ac2fd832039824badbf8c6da28e3f685ec415141e175e1bd63c05a8e45557bcf&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 
 ### External
@@ -230,7 +231,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis commodo mau
 ## Video
 
 
-[image](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3c12cd74-c2cb-45c1-8d00-b62133634fa4/How_to_make_video.webm?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230508%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230508T200926Z&X-Amz-Expires=3600&X-Amz-Signature=d2304bd69d73daf86d0b8e1f471d1baf8f9cb6688bda7a53dba30824780a84e6&X-Amz-SignedHeaders=host&x-id=GetObject)
+[image](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/3c12cd74-c2cb-45c1-8d00-b62133634fa4/How_to_make_video.webm?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202824Z&X-Amz-Expires=3600&X-Amz-Signature=52d5d1a08aef1cb06c1cb373a80cf61201b874bbcc14aa8450ea7cd5dde2d3ee&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 
 ---
@@ -260,7 +261,7 @@ int main() {
 ## File
 
 
-[image](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ce9c6086-f3d8-448a-b754-9bf37f0a8bd5/Living-Guide.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230508%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230508T200926Z&X-Amz-Expires=3600&X-Amz-Signature=5d023a24b6d10b339902e35da00365773f8dd281e9967affa7f0d1afa5c4d2de&X-Amz-SignedHeaders=host&x-id=GetObject)
+[image](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ce9c6086-f3d8-448a-b754-9bf37f0a8bd5/Living-Guide.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230630T202824Z&X-Amz-Expires=3600&X-Amz-Signature=40117b5df40232e8703d3b02e3ddc3b6cc5e0394da8a61f69c0d81c6238f26d3&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 
 ---
