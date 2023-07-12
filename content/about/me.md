@@ -12,5 +12,5 @@ ShowToc: false
 Welcome to Morris Tai's blog! I write articles based on my work and observations, aiming to present information in an easy-to-understand way. My articles focus on topics such as **[Rust](https://www.rust-lang.org/)**, **Cloud Native**, **Data Streaming** and **Middleware** ([Kafka](https://kafka.apache.org/), [Flink](https://flink.apache.org/) etc.). You can find my activity on [GitHub](https://github.com/morristai).
 
 <p align="center">
-<a href="/docs/resume_morris_tai.pdf"><b>📃Resume<b> (Update: 2022/11)</a>
+<a href="/docs/resume_morris_tai.pdf"><b>📃Resume<b> (Update: 2023/5)</a>
 </p>
