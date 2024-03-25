@@ -1,5 +1,5 @@
 ---
-title: "Building Serverless Applications with Rust"
+title: "Serverless with Rust and Protocol Buffers"
 date: "2023-03-08T19:43:00.000Z"
 lastmod: "2023-03-30T20:27:00.000Z"
 draft: false
@@ -126,12 +126,9 @@ In order to do that, I have to research Rust libraries that bring additional fun
 
 These crates provide a great development experience when writing cloud services. However, after trying some of them, I found that there are still some features that need to be added or other inconvenient parts. For example, Prost is heavily based on tonic. So if you only want to use Prost without tonic, you may want to use a tool like [proto-gen (made by Embark Studios)](https://github.com/EmbarkStudios/proto-gen), which provides a feature-rich CLI over Prost.
 
-
 > 💡 To understand how Protocol Buffers (protobuf) works under the hood, I recommend reading this article: [Protobufs Explained. In essence Protocol Buffers, aka… | by Giga Gatenashvili](https://levelup.gitconnected.com/protobufs-explained-17ed6ba52076)
 
-
 Let’s look at our makefile for generating Rust code using `*.proto`
-
 
 ```makefile
 RUST_GENERATOR_FOLDER = ../submodules/proto-gen-rs
@@ -156,9 +153,7 @@ Prost also support [Protobuf well-known types](https://protobuf.dev/reference/pr
 prost-types = "0.11"
 ```
 
-
 Once Rust structs been generated, we can use them to decode the corresponding schema like this:
-
 
 ```rust
 use bytes::Bytes;
