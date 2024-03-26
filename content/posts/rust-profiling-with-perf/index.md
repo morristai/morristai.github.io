@@ -174,8 +174,20 @@ The DWARF format offers enhanced compatibility across various compilers and arch
 |             | Less detailed stack information   | Primarily for user space; risky for kernel space |
 |             |                                   | Slower and more resource-intensive |
 
+## How to represent the data?
+
+### Flamegraph
+
+A flamegraph is a visualization tool that represents the data we generated using tools mentioned above. It is widely used in profiling to display the stack traces of a program. The x-axis represents the stack depth, while the y-axis displays the function name. The width of each box **corresponds to the number of samples taken for that function**. The flamegraph is an effective way to visualize the performance of a program and identify bottlenecks.
+In Rust ecosystem, there're some existed tools that can help to generate flamegraph, such as:
+
+- [cargo flamegraph](https://github.com/flamegraph-rs/flamegraph)
+![](https://github.com/flamegraph-rs/flamegraph/raw/main/example_cropped.png)
+
+- If you are profiling on macOS, I would recommend using [samply](https://github.com/mstange/samply).
+
 ## Conclusion
 
 In conclusion, we have discussed the essentials of profiling, including the various methods to trigger samples and gather data. We have also explored the different ways to obtain backtraces, such as using frame pointers or DWARF. Each method has its own set of pros and cons, and the choice of method depends on the specific requirements of the profiling task at hand. By understanding these concepts, we can better optimize our profiling workflow and gain valuable insights into our program's performance.
 
-> This article is highly inspired by [YangKeao](https://github.com/YangKeao)
+> This article is inspired by [YangKeao](https://github.com/YangKeao) presentation

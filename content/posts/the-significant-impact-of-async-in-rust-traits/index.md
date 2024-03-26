@@ -1,5 +1,5 @@
 ---
-title: "The Significant Impact of async in Rust Traits"
+title: "Async in Traits Just Save Us"
 date: "2024-03-10T10:04:55+08:00"
 lastmod: 
 draft: false
@@ -107,7 +107,7 @@ pub trait Read: Unpin + Send + Sync {
 }
 ```
 
-You might be pondering where the `async` keyword goes. Well, in Rust, `async` is essentially syntactic sugar, translating into `impl Future<Output = T> + Send` during compilation. Our decision to explicitly define trait bounds stems from the desire to separate concerns for the WASM target. This explicitness has no bearing on the implementation of methods. For example, the `poll_read` method in `IncomingAsyncBody` can now be implemented as follows:
+You might be pondering where the `async` keyword goes. Well, in Rust, `async` is essentially syntactic sugar, translating into `impl Future<Output = T> + Send` during compilation. The decision to explicitly define trait bounds stems from the desire to separate compile target for the WASM support. This has no bearing on the implementation of methods. For example, the `poll_read` method in `IncomingAsyncBody` can now be implemented as follows:
 
 ```rust
 impl oio::Read for IncomingAsyncBody {
@@ -185,4 +185,4 @@ Isn't that much simpler to read and maintain? No more `loop`, `&mut Context<'_>`
 
 ## Wrapping Up
 
-I'm convinced that integrating `async` within traits will significantly expedite handling futures, simplifying the Rust learning curve and making `async`/`await` paradigms more accessible to Rustaceans. Nevertheless, not every challenge related to `async`/`await` in Rust has been solved. There are still some [limitations](https://blog.rust-lang.org/2023/12/21/async-fn-rpit-in-traits.html#where-the-gaps-lie) to consider. However, I beleive that the Rust team 🦀 will continue to refine the `async`/`await` experience moving forward. ✌️
+I'm convinced that integrating `async` within traits will significantly expedite handling futures, simplifying the Rust learning curve and making `async`/`await` paradigms more accessible to Rustaceans. Nevertheless, not every challenge related to `async`/`await` in Rust has been solved. There are still some [limitations](https://blog.rust-lang.org/2023/12/21/async-fn-rpit-in-traits.html#where-the-gaps-lie) to consider. However, I beleive the Rust team 🦀 will continue to refine the `async`/`await` experience moving forward. ✌️
