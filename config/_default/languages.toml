@@ -101,7 +101,7 @@
       # whether to omit favicon resource links
       noFavicon = false
       # modern SVG favicon to use in place of older style .png and .ico files
-      svgFavicon = ""
+      svgFavicon = "/images/favicon.svg"
       # Safari mask icon color
       iconColor = "#5bbad5"
       # Windows v8-10 tile color
