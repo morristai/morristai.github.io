@@ -8,8 +8,6 @@
   hasCJKLanguage = false
   # default amount of posts in each pages
   paginate = 12
-  # [UA-XXXXXXXX-X] google analytics code (replaced by params.analytics.google)
-  googleAnalytics = "G-HSER3QLKLR"
   # copyright description used only for seo schema
   copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
   # Menu config
@@ -94,6 +92,8 @@
     description = "The official documentation for the Hugo DoIt theme"
     # site keywords
     keywords = ["rust", "database", "data streaming", "distributed system", "scalability", "infrastructure"]
+    # [UA-XXXXXXXX-X] google analytics code (replaced by params.analytics.google)
+    googleAnalytics = "G-HSER3QLKLR"
     # App icon config
     [en.params.app]
       # optional site title override for the app when added to an iOS home screen or Android launcher
@@ -163,6 +163,11 @@
         enable = true
         # special amount of posts in each home posts page
         paginate = 5
+    [en.params.author]
+      name = "Morris Tai"
+      email = "morristai01@gmail.com"
+      link = "https://github.com/morristai"
+      avatar = "/images/avatar.jpg"
     # Social config in home page
     [en.params.social]
       GitHub = "morristai"
