@@ -1,3 +1,11 @@
+node_modules
+dist
+.env
+resources
+.hugo_build.lock
+public
+.idea
+
 # General
 .DS_Store
 .AppleDouble
