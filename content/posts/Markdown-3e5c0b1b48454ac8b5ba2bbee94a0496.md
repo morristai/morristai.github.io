@@ -1,7 +1,7 @@
 ---
 title: "Markdown"
-date: "2023-05-08T19:42:00.000Z"
-lastmod: "2023-05-08T19:45:00.000Z"
+date: "2018-05-08T19:42:00.000Z"
+lastmod: ""
 draft: true
 featuredImage: "https://www.notion.so/images/page-cover/woodcuts_1.jpg"
 series: []

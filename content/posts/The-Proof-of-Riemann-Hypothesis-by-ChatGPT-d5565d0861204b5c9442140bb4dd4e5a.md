@@ -1,7 +1,7 @@
 ---
 title: "The Proof of Riemann Hypothesis by ChatGPT"
-date: "2023-05-08T19:42:00.000Z"
-lastmod: "2023-05-08T19:45:00.000Z"
+date: "2018-05-08T19:42:00.000Z"
+lastmod: ""
 draft: true
 series: []
 authors: []
