@@ -4,12 +4,9 @@ date: "2023-03-08T19:43:00.000Z"
 lastmod: "2023-03-30T20:27:00.000Z"
 draft: false
 series: []
-authors:
-  - "Morris Tai"
-tags:
-  - "protobuf"
-  - "grpc"
-  - "rust"
+authors: ["Morris Tai"]
+tags: ["rust", "protobuf", "grpc", "aws", "lambda"]
+
 categories: []
 NOTION_METADATA:
   object: "page"
