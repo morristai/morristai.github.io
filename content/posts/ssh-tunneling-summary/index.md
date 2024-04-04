@@ -2,6 +2,7 @@
 title: "SSH Tunneling Summary"
 date: 2020-12-10T10:04:55+08:00
 draft: false
+authors: ["Morris Tai"]
 tags: ["port forwarding", "ssh", "networking"]
 ---
 

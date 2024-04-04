@@ -2,6 +2,7 @@
 title: "Practicing bisect in Go"
 date: 2020-05-05T11:46:56+08:00
 draft: false
+authors: ["Morris Tai"]
 tags: ["go", "binary search"]
 ---
 
