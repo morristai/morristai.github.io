@@ -2,6 +2,7 @@
 title: "Common Python and C++11 usage comparison"
 date: 2019-05-12T11:46:56+08:00
 draft: false
+authors: ["Morris Tai"]
 tags: ["python", "c++"]
 ---
 

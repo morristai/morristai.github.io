@@ -30,20 +30,20 @@
   "author": "HEIGE-PCloud",
   "dependencies": {
     "@notionhq/client": "^2.2.14",
-    "@pclouddev/notion-to-markdown": "^2.7.5",
+    "@pclouddev/notion-to-markdown": "^2.7.17",
     "dotenv": "^16.4.5",
     "front-matter": "^4.0.2",
     "fs-extra": "^11.2.0",
     "katex": "^0.16.10",
-    "yaml": "^2.4.0"
+    "yaml": "^2.4.2"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/katex": "^0.16.7",
-    "@types/node": "^20.11.24",
+    "@types/node": "^20.13.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.5",
     "vitest": "^1.3.1"
   }
 }
