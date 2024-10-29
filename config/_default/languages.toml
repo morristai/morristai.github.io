@@ -164,10 +164,10 @@
         # special amount of posts in each home posts page
         paginate = 5
     [en.params.author]
-      name = "Morris Tai"
+      name = "Morris"
       email = "morristai01@gmail.com"
       link = "https://github.com/morristai"
-      avatar = "/images/avatar.jpg"
+      avatar = "/images/avator_icon.png"
     # Social config in home page
     [en.params.social]
       GitHub = "morristai"
