@@ -22,6 +22,9 @@ images = ["/images/avatar.webp"]
 # enable PWA
 # 开启 PWA 支持
 enablePWA = false
+# enable Chatbot
+# 开启聊天机器人
+enableChatbot = false
 # license information
 # 许可协议信息 (支持 HTML 格式)
 license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
@@ -144,7 +147,7 @@ ruby = true
 fraction = true
 # whether to enable the fontawesome extended syntax
 # 是否使用 fontawesome 扩展语法
-fontawesome = true
+fontawesome = false
 # whether to show link to Raw Markdown content of the content
 # 是否显示原始 Markdown 文档内容的链接
 linkToMarkdown = true
