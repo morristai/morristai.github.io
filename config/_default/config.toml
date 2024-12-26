@@ -1,11 +1,4 @@
-baseURL = "https://morristai.github.io"
-# [en, zh-cn, fr, pl, ...] determines default content language
-defaultContentLanguage = "en"
+baseURL = "https://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
 theme = "DoIt"
-title = "300.Watts"
-# whether to use robots.txt
-enableRobotsTXT = true
-# whether to use git commit log
-enableGitInfo = false
-# whether to use emoji code
-enableEmoji = true
