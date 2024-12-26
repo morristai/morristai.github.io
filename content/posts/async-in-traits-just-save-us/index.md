@@ -4,7 +4,7 @@ date: "2024-03-10T10:04:55+08:00"
 lastmod: 
 draft: false
 series: []
-authors: ["Morris Tai"]
+authors: ["Morris"]
 tags: ["rust", "opendal", "async", "future", "trait"]
 ---
 

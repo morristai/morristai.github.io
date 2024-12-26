@@ -2,7 +2,7 @@
 title: "How to mail the movie list from the remote host"
 date: 2020-01-10T17:04:55+08:00
 draft: false
-authors: ["Morris Tai"]
+authors: ["Morris"]
 tags: ["powershell", "go", "smtplib"]
 ---
 

@@ -4,7 +4,7 @@ date: "2022-01-26T10:04:55+08:00"
 lastmod: 
 draft: false
 series: []
-authors: ["Morris Tai"]
+authors: ["Morris"]
 tags: ["kafka", "schema", "avro"]
 ---
 

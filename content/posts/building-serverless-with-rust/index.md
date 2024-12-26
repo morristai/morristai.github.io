@@ -4,7 +4,7 @@ date: "2023-03-08T19:43:00.000Z"
 lastmod: "2023-03-30T20:27:00.000Z"
 draft: false
 series: []
-authors: ["Morris Tai"]
+authors: ["Morris"]
 tags: ["rust", "protobuf", "grpc", "aws", "lambda"]
 
 categories: []
@@ -40,7 +40,7 @@ NOTION_METADATA:
       people:
         - object: "user"
           id: "d7ff686b-6744-4337-b9d7-7286d20d3c4a"
-          name: "Morris Tai"
+          name: "Morris"
           avatar_url: "https://s3-us-west-2.amazonaws.com/public.notion-static.com/1d886c\
             85-afcf-4691-aef3-561c5efc93ac/flat750x075f-pad750x1000f8f8f8.u2.jp\
             g"
