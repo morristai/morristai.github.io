@@ -216,7 +216,7 @@ sort = true
 # whether to enable auto header numbering
 # 是否开启标题自动编号
 [page.header.number]
-enable = true
+enable = false
 [page.header.number.format]
 h2 = "{h2} {title}"
 h3 = "{h2}.{h3} {title}"

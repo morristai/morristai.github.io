@@ -4,7 +4,7 @@ date: "2023-10-09T10:04:55+08:00"
 lastmod: 
 draft: false
 series: []
-authors: ["Morris Tai"]
+authors: ["Morris"]
 tags: ["rust", "perfiling", "perf", "pmu", "kprobes", "dwarf", "linux"]
 ---
 
