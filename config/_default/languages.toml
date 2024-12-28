@@ -48,22 +48,6 @@
     #   title = ""
     #   weight = 4
     # [[en.menu.main]]
-    #   identifier = "authors"
-    #   pre = ""
-    #   post = ""
-    #   name = "Authors"
-    #   url = "/authors/"
-    #   title = ""
-    #   weight = 5
-    # [[en.menu.main]]
-    #   identifier = "showcase"
-    #   pre = ""
-    #   post = ""
-    #   name = "Showcase"
-    #   url = "/showcase/"
-    #   title = ""
-    #   weight = 6
-    # [[en.menu.main]]
     #   identifier = "documentation"
     #   pre = ""
     #   post = ""
@@ -109,7 +93,7 @@
     [en.params.search]  # TODO: Fix search
       enable = true
       # type of search engine ("lunr", "algolia", "fuse")
-      type = "fuse"
+      type = "algolia"
       # max index length of the chunked content
       contentLength = 4000
       # placeholder of the search bar
@@ -122,21 +106,10 @@
       highlightTag = "em"
       # whether to use the absolute URL based on the baseURL in search index
       absoluteURL = false
-      # [en.params.search.algolia]
-      #   index = "en_index"
-      #   appID = "5YGRNRQK1G"
-      #   searchKey = "0ff6874805de24b84aa1d5ebccad56cd"
-      [en.params.search.fuse]
-        # https://fusejs.io/api/options.html
-        isCaseSensitive = false
-        minMatchCharLength = 2
-        findAllMatches = false
-        location = 0
-        threshold = 0.1
-        distance = 100
-        ignoreLocation = true
-        useExtendedSearch = false
-        ignoreFieldNorm = false
+      [en.params.search.algolia]
+        index = "en_index"
+        appID = "R7I3523JS6"
+        searchKey = "5cd3256ef82c1bd37aab2e4573b2f0ad"
     # Home page config
     [en.params.home]
       # amount of RSS pages
@@ -172,82 +145,10 @@
     [en.params.social]
       GitHub = "morristai"
       Twitter = "morristai01"
-      Instagram = "diaper151"
-      Facebook = "morristai01"
-      Telegram = "diaper151"
-      Reddit = "diaper151"
+      Instagram = "morristai01"
       Linkedin = "morris-tai-509306118"
-      # Medium = ""
-      # Gitlab = ""
-      # Youtubelegacy = "xxxx"
-      # Youtubecustom = ""
-      # Youtubechannel = ""
-      # Tumblr = ""
-      # Quora = ""
-      # Keybase = ""
-      # Pinterest = ""
-      # Codepen = ""
-      # FreeCodeCamp = ""
-      # Bitbucket = ""
-      # Stackoverflow = ""
-      # Weibo = ""
-      # Odnoklassniki = ""
-      # VK = ""
-      # Flickr = ""
-      # Xing = ""
-      # Snapchat = ""
-      # Soundcloud = ""
-      # Spotify = ""
-      # Bandcamp = ""
-      # Paypal = ""
-      # Fivehundredpx = ""
-      # Mix = ""
-      # Goodreads = ""
-      # Lastfm = ""
-      # Foursquare = ""
-      # Hackernews = ""
-      # Kickstarter = ""
-      # Patreon = ""
-      # Steam = ""
-      # Twitch = ""
-      # Strava = ""
-      # Skype = ""
-      # Whatsapp = ""
-      # Zhihu = ""
-      # Douban = ""
-      # Angellist = ""
-      # Slidershare = ""
-      # Jsfiddle = ""
-      # Deviantart = ""
-      # Behance = ""
-      # Dribbble = ""
-      # Wordpress = ""
-      # Vine = ""
-      # Googlescholar = ""
-      # Researchgate = ""
-      # Thingiverse = ""
-      # Devto = ""
-      # Gitea = ""
-      # XMPP = ""
-      # Matrix = ""
-      # Bilibili = ""
-      # ORCID = ""
-      # QQ = ""
-      # QQGroup = ""
-      # Liberapay = "xxx"
-      # Ko-Fi = "xxx"
-      # BuyMeACoffee = ""
-      # Linktree = ""
       Email = "morristai01@gmail.com"
       RSS = true
       [en.params.social.Mastodon]
         id = "@morristai"
         prefix = "https://hachyderm.io/"
-      # [en.params.social.Diaspora]
-      #   id = "@xxxx"
-      #   prefix = "https://yyyy/"
-    # Sponsor config
-    # [en.params.sponsor]
-    #   enable = false
-    #   bio = "If you find this post helpful, please consider sponsoring."
-    #   link = "https://github.com/morristai"
