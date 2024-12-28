@@ -1,0 +1,4 @@
+home = ["HTML", "RSS", "JSON", "Algolia"]
+page = ["HTML", "MarkDown"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML", "RSS"]
