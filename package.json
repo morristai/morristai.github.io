@@ -34,8 +34,8 @@
     "dotenv": "^16.4.5",
     "front-matter": "^4.0.2",
     "fs-extra": "^11.2.0",
-    "katex": "^0.16.19",
-    "yaml": "^2.6.1"
+    "katex": "^0.16.11",
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
