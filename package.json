@@ -35,12 +35,12 @@
     "front-matter": "^4.0.2",
     "fs-extra": "^11.2.0",
     "katex": "^0.16.19",
-    "yaml": "^2.6.1"
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/katex": "^0.16.7",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.3",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2",
