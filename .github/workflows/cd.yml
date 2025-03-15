@@ -4,12 +4,8 @@ on:
   push:
     branches:
       - 'main'
-
-  schedule:
-    - cron: '0 * * * *' # run every hour
   workflow_dispatch:
     
-
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: write
@@ -27,7 +23,7 @@ defaults:
     shell: bash
 
 env:
-  NODE_VERSION: 16.x
+  NODE_VERSION: 23.X
 
 jobs:
   build:
@@ -41,25 +37,25 @@ jobs:
         run: curl -X POST ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
 
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: 'latest'
           extended: true
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v4
 
       # - name: build post from notion
       #   env:
@@ -78,8 +74,9 @@ jobs:
       #     commit_message: Sync content with Notion
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages
           path: ./public
 
   deploy:
@@ -91,4 +88,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
