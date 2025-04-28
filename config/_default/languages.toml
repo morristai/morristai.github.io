@@ -75,7 +75,7 @@
     # site description
     description = "The official documentation for the Hugo DoIt theme"
     # site keywords
-    keywords = ["rust", "database", "data streaming", "distributed system", "scalability", "infrastructure"]
+    keywords = ["Rust", "Software", "Backend Development", "Distributed System"]
     # [UA-XXXXXXXX-X] google analytics code (replaced by params.analytics.google)
     googleAnalytics = "G-HSER3QLKLR"
     # App icon config
@@ -152,3 +152,56 @@
       [en.params.social.Mastodon]
         id = "@morristai"
         prefix = "https://hachyderm.io/"
+[zh-tw]
+  weight = 2
+  languageCode = "zh-TW"
+  languageName = "繁體中文"
+  hasCJKLanguage = true
+  copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
+  [zh-tw.menu]
+    [[zh-tw.menu.main]]
+      identifier = "posts"
+      # you can add extra information before the name (HTML format is supported), such as icons
+      # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+      pre = ""
+      # you can add extra information after the name (HTML format is supported), such as icons
+      # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+      post = ""
+      name = "所有文章"
+      url = "/posts/"
+      # title will be shown when you hover on this menu link.
+      # 将鼠标悬停在此菜单链接上时将显示标题。
+      title = ""
+      weight = 1
+    [[zh-tw.menu.main]]
+      identifier = "about"
+      pre = ""
+      post = ""
+      name = "關於"
+      url = "/about/me"
+      title = ""
+      weight = 8
+    [[zh-tw.menu.main]]
+      identifier = "tags"
+      pre = ""
+      post = ""
+      name = "標籤"
+      url = "/tags/"
+      title = ""
+      weight = 2
+    [[zh-tw.menu.main]]
+      identifier = "categories"
+      pre = ""
+      post = ""
+      name = "分類"
+      url = "/categories/"
+      title = ""
+      weight = 3
+    [[zh-tw.menu.main]]
+      identifier = "series"
+      pre = ""
+      post = ""
+      name = "系列"
+      url = "/series/"
+      title = ""
+      weight = 4

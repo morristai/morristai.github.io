@@ -9,9 +9,9 @@ ShowToc: false
 <div style="display: flex; align-items: flex-start; justify-content: center;">
   <img src="/images/ziva_ferris.jpg" alt="Ferris and me" width="300" style="border-radius: 15px; margin-right: 20px;">
   <p style="text-align: left;">
-    Welcome to Morris's blog! I write articles based on my work and observations, 
-    aiming to present information in an easy-to-understand way. 
-    My articles focus on topics like <b>Rust</b>, <b>Modern Cloud Infra</b>, <b>System</b> and <b>Profiling</b>.
+    歡迎來到我的中文Blog！<br>
+    我來自台灣，目前在加拿大工作和生活。<br>
+    這裡通常會放我生活的點滴和觀察。
   </p>
 </div>
 

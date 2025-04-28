@@ -4,7 +4,7 @@ title = "300.Watts"
 # DoIt theme version
 # DoIt 主题版本
 # https://github.com/HEIGE-PCloud/DoIt/releases
-version = "0.4.X"
+# version = "0.4.2"
 # site default theme ("light", "dark", "black", "auto")
 # 网站默认主题 ("light", "dark", "black", "auto")
 defaultTheme = "light"
