@@ -94,15 +94,9 @@ With the advent of Rust [1.75](https://blog.rust-lang.org/2023/12/21/async-fn-rp
 
 ```rust
 pub trait Read: Unpin + Send + Sync {
-    
-    #[cfg(not(target_arch = "wasm32"))]
     fn read(&mut self, limit: usize) -> impl Future<Output = Result<Bytes>> + Send;
-    #[cfg(target_arch = "wasm32")]
     fn read(&mut self, size: usize) -> impl Future<Output = Result<Bytes>>;
-
-    #[cfg(not(target_arch = "wasm32"))]
     fn seek(&mut self, pos: io::SeekFrom) -> impl Future<Output = Result<u64>> + Send;
-    #[cfg(target_arch = "wasm32")]
     fn seek(&mut self, pos: io::SeekFrom) -> impl Future<Output = Result<u64>>;
 }
 ```
