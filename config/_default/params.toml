@@ -396,12 +396,13 @@ repo = ""
 # Twikoo comment config (https://twikoo.js.org/)
 # Twikoo comment 评论系统设置 (https://twikoo.js.org/)
 [page.comment.twikoo]
-commentCount = true
-enable = true
-envId = "https://doit-docs-comment-twikoo.vercel.app/"
-path = ""
+enable = false
+envId = "https://twikoo-comments-doit.vercel.app/"
 region = ""
+path = ""
+cloudbase = true # boolean : true / false. # 是否部署在腾讯云 CloudBase
 visitor = true
+commentCount = true
 # Vssue comment config (https://vssue.js.org//)
 # Vssue comment 评论系统设置 (https://vssue.js.org//)
 [page.comment.vssue]
