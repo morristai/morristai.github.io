@@ -90,7 +90,7 @@
       iconColor = "#5bbad5"
       # Windows v8-10 tile color
       tileColor = "#da532c"
-    [en.params.search]  # TODO: Fix search
+    [en.params.search]
       enable = true
       # type of search engine ("lunr", "algolia", "fuse")
       type = "algolia"
