@@ -9,9 +9,11 @@ ShowToc: false
 <div style="display: flex; align-items: flex-start; justify-content: center;">
   <img src="/images/ziva_ferris.jpg" alt="Ferris and me" width="300" style="border-radius: 15px; margin-right: 20px;">
   <p style="text-align: left;">
-    歡迎來到我的中文Blog！<br>
-    我來自台灣，目前在加拿大工作和生活。<br>
-    這裡通常會放我生活的點滴和觀察。
+    歡迎來到 Morris & Ziva 的部落格！<br>
+    這裡記錄我們在加拿大和台灣的生活故事，包括旅行和各種生活經驗。
+    <br><br>
+    另外，我們在這裡<a href="https://300watts.me/" target="_blank">(英文主頁)</a>也分享工作上的觀察和技術筆記，主要圍繞在
+    <b>Backend Development</b>, <b>Modern Cloud Infrastructure</b>, <b>Systems</b>, 和<b>Profiling</b>。
   </p>
 </div>
 
