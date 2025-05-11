@@ -6,6 +6,7 @@ description = "300.Watts"
 keywords = ["台灣", "加拿大", "生活", "軟體工程師"]
 googleAnalytics = "G-HSER3QLKLR"
 defaultTheme = "dark"
+
 # App icon config
 # 应用图标配置
 [app]
@@ -108,7 +109,7 @@ defaultTheme = "dark"
   # Home page posts
   # 主页文章列表
   [home.posts]
-    enable = false
+    enable = true
     # special amount of posts in each home posts page
     # 主页每页显示文章数量
     paginate = 7
