@@ -5,6 +5,7 @@ description = "300.Watts"
 # 网站关键词
 keywords = ["台灣", "加拿大", "生活", "軟體工程師"]
 googleAnalytics = "G-HSER3QLKLR"
+defaultTheme = "dark"
 # App icon config
 # 应用图标配置
 [app]
@@ -100,7 +101,7 @@ googleAnalytics = "G-HSER3QLKLR"
     typeit = false
     # whether to show social links
     # 是否显示社交账号
-    social = true
+    social = false
     # disclaimer (HTML format is supported)
     # 免责声明 (支持 HTML 格式)
     disclaimer = ""
