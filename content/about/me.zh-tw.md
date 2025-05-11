@@ -12,8 +12,8 @@ ShowToc: false
     歡迎來到 Morris & Ziva 的部落格！<br>
     這裡記錄我們在加拿大和台灣的生活故事，包括旅行和各種生活經驗。
     <br><br>
-    另外，我們在這裡<a href="https://300watts.me/" target="_blank">(英文主頁)</a>也分享工作上的觀察和技術筆記，主要圍繞在
-    <b>Backend Development</b>, <b>Modern Cloud Infrastructure</b>, <b>Systems</b>, 和<b>Profiling</b>。
+    另外，我們在<a href="https://300watts.me/" target="_blank">這裡</a>也分享工作上的觀察和技術筆記，主要圍繞在
+    <b>Backend Development</b>, <b>Cloud Infra</b>, <b>Systems</b>, 和<b>Profiling</b>。
   </p>
 </div>
 
