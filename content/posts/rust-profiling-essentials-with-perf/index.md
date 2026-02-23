@@ -5,12 +5,12 @@ lastmod:
 draft: false
 series: []
 authors: ["Morris"]
-tags: ["rust", "perfiling", "perf", "pmu", "kprobes", "dwarf", "linux"]
+tags: ["rust", "profiling", "perf", "pmu", "kprobes", "dwarf", "linux"]
 ---
 
 ## What is profiling?
 
-> A: **Sampling** the program **at specific time**, and do some statistics analysis.
+> A: **Sampling** the program **at specific times**, and do some statistics analysis.
 
 It can be one of the following:
 
@@ -67,7 +67,7 @@ $ perf record -F 99 -e L1-dcache-misses
 
 But how do we make sure our sample is accurate, distributed evenly, and not biased? We know sometime CPU might be busy(or sleep, etc.), and the sample might be missed. How do we make sure the sample is accurate?
 
-The answer is - **Linux**. Linux is smart enought to automatically adjust the sample rate to make sure the sample is accurate.
+The answer is - **Linux**. Linux is smart enough to automatically adjust the sample rate to make sure the sample is accurate.
 
 > For example, If we want to sample at 100Hz(10ms), but in the previous 1ms, the delta_count is 5, then the period should be 50.
 This value is tuned for every **1ms** (by default, HZ=1000)
@@ -97,7 +97,7 @@ Profilers utilize time-based interrupts to gather data, such as [gperftools](htt
 
 ### Software Interrupts: `kprobes`/`uprobes`
 
-> The differnce between HW/SW, is who triggers the sample.
+> The difference between HW/SW, is who triggers the sample.
 
 The kernel rewrites certain instructions, such as the entry of the function, to `INT 3`. When reading related pages, these instructions are automatically replaced. Upon encountering this interrupt, the system catches it and increments a counter. Once this counter meets or exceeds a predefined period, a sample is taken. Subsequently, the counter is reset, allowing the program to continue its execution.
 
@@ -145,7 +145,7 @@ fn main() {
 }
 ```
 
-This a table similiar to DWARF format that specifies how to **set registers** to restore the previous frame:
+This is a table similar to DWARF format that specifies how to **set registers** to restore the previous frame:
 | Loc   | CFA    | RA    | EDI       | ...    |
 |-------|--------|-------|-----------|--------|
 | 0x0a  | esp+4  | *cfa  | *(cfa-4)  | ...    |
@@ -178,8 +178,8 @@ The DWARF format offers enhanced compatibility across various compilers and arch
 
 ### Flamegraph
 
-A flamegraph is a visualization tool that represents the data we generated using tools mentioned above. It is widely used in profiling to display the stack traces of a program. The x-axis represents the stack depth, while the y-axis displays the function name. The width of each box **corresponds to the number of samples taken for that function**. The flamegraph is an effective way to visualize the performance of a program and identify bottlenecks.
-In Rust ecosystem, there're some existed tools that can help to generate flamegraph, such as:
+A flamegraph is a visualization tool that represents the data we generated using tools mentioned above. It is widely used in profiling to display the stack traces of a program. The y-axis represents the stack depth (callers at the bottom, callees at the top), while the x-axis is sorted alphabetically and has no time-based meaning. The width of each box **corresponds to the proportion of samples where that function appeared on the stack**. The flamegraph is an effective way to visualize the performance of a program and identify bottlenecks.
+In Rust ecosystem, there are some existing tools that can help to generate flamegraph, such as:
 
 - [cargo flamegraph](https://github.com/flamegraph-rs/flamegraph)
 ![](https://github.com/flamegraph-rs/flamegraph/raw/main/example_cropped.png)
@@ -190,4 +190,4 @@ In Rust ecosystem, there're some existed tools that can help to generate flamegr
 
 In conclusion, we have discussed the essentials of profiling, including the various methods to trigger samples and gather data. We have also explored the different ways to obtain backtraces, such as using frame pointers or DWARF. Each method has its own set of pros and cons, and the choice of method depends on the specific requirements of the profiling task at hand. By understanding these concepts, we can better optimize our profiling workflow and gain valuable insights into our program's performance.
 
-> This article is inspired by [YangKeao](https://github.com/YangKeao) presentation
+> This article is inspired by [YangKeao](https://github.com/YangKeao)'s presentation
