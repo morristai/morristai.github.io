@@ -10,8 +10,8 @@ tags: ["rust", "opendal", "async", "future", "trait"]
 
 ## The Challenge of Implementing the Future Trait for Custom Types
 
-Developers who venture into crafting their own `async`/`await` implementations in Rust may encounter the intricate task of implementing the `Future` trait for their custom types. Rust's approach to `async`/`await` is nuanced, offering a stark contrast to languages like Go, which employs preemptive scheduling. Instead, Rust embraces lazy evaluation and cooperative scheduling, allowing developers to meticulously control the yield points to the executor.
-This level of control, however, introduces complexity in implementing the `Future` trait for custom types. The intricacies arise because `.await` can't be invoked within a **non-async** function, necessitating the development of a state machine(or similiar) for these custom types. This endeavor can be laborious and fraught with potential errors, difficult to maintain, and may prompt developers to opt for `BoxFuture<T>`, a choice that could compromise performance.
+Developers who venture into crafting their own `async`/`await` implementations in Rust may encounter the intricate task of implementing the `Future` trait for their custom types. Rust's approach to `async`/`await` is nuanced, offering a stark contrast to languages like Go, which employ preemptive scheduling. Instead, Rust embraces lazy evaluation and cooperative scheduling, allowing developers to meticulously control the yield points to the executor.
+This level of control, however, introduces complexity in implementing the `Future` trait for custom types. The intricacies arise because `.await` can't be invoked within a **non-async** function, necessitating the development of a state machine (or similar) for these custom types. This endeavor can be laborious and fraught with potential errors, difficult to maintain, and may prompt developers to opt for `BoxFuture<T>`, a choice that could compromise performance.
 
 > **Understanding the Role of `BoxFuture<T>`**  
 > `BoxFuture<T>` acts as a wrapper for `Pin<Box<dyn Future<Output = T> + Send + 'a>>`, representing a pointer to an object on the heap that conforms to the `Future` trait. This layer of abstraction spares developers the headache of handling stack-based object or field movements. Thanks to `Box<T>`, which ensures full ownership and permits the movement of the smart pointer without affecting the underlying data, `BoxFuture<T>` transfers are both safe and efficient. Nevertheless, the reliance on heap allocation can introduce performance trade-offs. For developers craving finer-grained control over their asynchronous tasks, exploring alternatives like [pin-project](https://github.com/taiki-e/pin-project) could prove advantageous.
@@ -32,7 +32,7 @@ In OpenDAL, operators manage a `FusedAccessor` delegate, essentially a type-eras
 
 <img src="images/accessor.png" width="650" style="display: block; margin: 0 auto;">
 
-Thankfully, the commonalities in service operations have allowed us to employ utility structures like [`IncomingAsyncBody`](https://github.com/apache/opendal/blob/50791255c6ef3ed259c88dcc04a4295fa60fa443/core/src/raw/http_util/body.rs#L161), which implements the `Read` trait. This strategy facilitates efficient HTTP response management across service backends, eliminating the need to reinvent the wheel for each services.
+Thankfully, the commonalities in service operations have allowed us to employ utility structures like [`IncomingAsyncBody`](https://github.com/apache/opendal/blob/50791255c6ef3ed259c88dcc04a4295fa60fa443/core/src/raw/http_util/body.rs#L161), which implements the `Read` trait. This strategy facilitates efficient HTTP response management across service backends, eliminating the need to reinvent the wheel for each service.
 
 Nonetheless, challenges may surface during integrations, such as with the DataBricks filesystem in OpenDAL. My experience with `IncomingAsyncBody` highlighted compatibility issues, as DataBricks required a distinct approach to response handling.
 ![](/images/dbfs-read-problem.png)
@@ -94,10 +94,9 @@ With the advent of Rust [1.75](https://blog.rust-lang.org/2023/12/21/async-fn-rp
 
 ```rust
 pub trait Read: Unpin + Send + Sync {
-    fn read(&mut self, limit: usize) -> impl Future<Output = Result<Bytes>> + Send;
-    fn read(&mut self, size: usize) -> impl Future<Output = Result<Bytes>>;
+    // `+ Send` is omitted for WASM targets
+    fn read(&mut self, size: usize) -> impl Future<Output = Result<Bytes>> + Send;
     fn seek(&mut self, pos: io::SeekFrom) -> impl Future<Output = Result<u64>> + Send;
-    fn seek(&mut self, pos: io::SeekFrom) -> impl Future<Output = Result<u64>>;
 }
 ```
 
@@ -179,4 +178,4 @@ Isn't that much simpler to read and maintain? No more `loop`, `&mut Context<'_>`
 
 ## Wrapping Up
 
-I'm convinced that integrating `async` within traits will significantly expedite handling futures, simplifying the Rust learning curve and making `async`/`await` paradigms more accessible to Rustaceans. Nevertheless, not every challenge related to `async`/`await` in Rust has been solved. There are still some [limitations](https://blog.rust-lang.org/2023/12/21/async-fn-rpit-in-traits.html#where-the-gaps-lie) to consider. However, I beleive the Rust team 🦀 will continue to refine the `async`/`await` experience moving forward. ✌️
+I'm convinced that integrating `async` within traits will significantly expedite handling futures, simplifying the Rust learning curve and making `async`/`await` paradigms more accessible to Rustaceans. Nevertheless, not every challenge related to `async`/`await` in Rust has been solved. There are still some [limitations](https://blog.rust-lang.org/2023/12/21/async-fn-rpit-in-traits.html#where-the-gaps-lie) to consider. However, I believe the Rust team 🦀 will continue to refine the `async`/`await` experience moving forward. ✌️

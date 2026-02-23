@@ -8,88 +8,6 @@ authors: ["Morris"]
 tags: ["rust", "protobuf", "grpc", "aws", "lambda"]
 
 categories: []
-NOTION_METADATA:
-  object: "page"
-  id: "a250aa41-7939-4b6c-be39-fd2ab9d477a4"
-  created_time: "2023-03-08T19:43:00.000Z"
-  last_edited_time: "2023-03-30T20:27:00.000Z"
-  created_by:
-    object: "user"
-    id: "d7ff686b-6744-4337-b9d7-7286d20d3c4a"
-  last_edited_by:
-    object: "user"
-    id: "d7ff686b-6744-4337-b9d7-7286d20d3c4a"
-  cover: null
-  icon: null
-  parent:
-    type: "database_id"
-    database_id: "61042bce-6c36-4e82-887c-6f246bddd78e"
-  archived: false
-  properties:
-    series:
-      id: "B%3C%3FS"
-      type: "multi_select"
-      multi_select: []
-    draft:
-      id: "JiWU"
-      type: "checkbox"
-      checkbox: false
-    authors:
-      id: "bK%3B%5B"
-      type: "people"
-      people:
-        - object: "user"
-          id: "d7ff686b-6744-4337-b9d7-7286d20d3c4a"
-          name: "Morris"
-          avatar_url: "https://s3-us-west-2.amazonaws.com/public.notion-static.com/1d886c\
-            85-afcf-4691-aef3-561c5efc93ac/flat750x075f-pad750x1000f8f8f8.u2.jp\
-            g"
-          type: "person"
-          person:
-            email: "morristai01@gmail.com"
-    tags:
-      id: "jw%7CC"
-      type: "multi_select"
-      multi_select:
-        - id: "9697d038-09b1-46d4-b46f-fbba888a463d"
-          name: "protobuf"
-          color: "orange"
-        - id: "aca1ba34-772a-4216-89fb-536054b857c6"
-          name: "grpc"
-          color: "blue"
-        - id: "0eb55815-555d-4acd-b70a-108c225c5b75"
-          name: "rust"
-          color: "yellow"
-    categories:
-      id: "nbY%3F"
-      type: "multi_select"
-      multi_select: []
-    summary:
-      id: "x%3AlD"
-      type: "rich_text"
-      rich_text: []
-    Name:
-      id: "title"
-      type: "title"
-      title:
-        - type: "text"
-          text:
-            content: "Building Serverless Applications with Rust"
-            link: null
-          annotations:
-            bold: false
-            italic: false
-            strikethrough: false
-            underline: false
-            code: false
-            color: "default"
-          plain_text: "Building Serverless Applications with Rust"
-          href: null
-  url: "https://www.notion.so/Building-Serverless-Applications-with-Rust-a250aa41\
-    79394b6cbe39fd2ab9d477a4"
-  public_url: null
-UPDATE_TIME: "2023-03-30T20:28:18.866Z"
-EXPIRY_TIME: "2023-03-30T21:27:57.470Z"
 
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
@@ -142,7 +60,7 @@ generate_all:
 ```
 
 
-Prost also support [Protobuf well-known types](https://protobuf.dev/reference/protobuf/google.protobuf/). But it come with a seperate crate.
+Prost also supports [Protobuf well-known types](https://protobuf.dev/reference/protobuf/google.protobuf/). But it comes with a separate crate.
 
 
 ```toml
@@ -150,7 +68,7 @@ Prost also support [Protobuf well-known types](https://protobuf.dev/reference/pr
 prost-types = "0.11"
 ```
 
-Once Rust structs been generated, we can use them to decode the corresponding schema like this:
+Once Rust structs have been generated, we can use them to decode the corresponding schema like this:
 
 ```rust
 use bytes::Bytes;
@@ -163,7 +81,7 @@ pub fn decode_proto_byte(bytes: Bytes) -> Result<YourEventType, DecodeError> {
     Ok(msg)
 }
 
-// If the data is compressed with .gz we can ready it to Bytes stream
+// If the data is compressed with .gz we can read it to Bytes stream
 pub fn decompress_gz(data: Bytes) -> Result<Bytes, std::io::Error> {
     let mut decoder = GzDecoder::new(&data[..]);
     let mut buffer = Vec::new();
@@ -199,21 +117,7 @@ async fn function_handler(event: LambdaEvent<SqsEvent>) -> Result<(), Error> {
 ```
 
 
-Once we receive an SQS event that records a Protobuf file located in an S3 bucket, we can start consuming them.
-
-
-```rust
-let mut event_list: Vec<YourEventType> = Vec::new();
-for bytes in bytes_list {
-    let decompressed_bytes = decoder::decompress_gz(bytes)?;
-    let msg = decoder::decode_proto_byte(decompressed_bytes)?;
-    debug!("Event: {:?}", &msg);
-    event_list.push(msg);
-}
-```
-
-
-Finally, decode it into JSON format and send it to the landing bucket.
+Once we receive an SQS event that records a Protobuf file located in an S3 bucket, we can start consuming them, decode into JSON format, and send it to the landing bucket.
 
 
 ```rust
@@ -231,7 +135,7 @@ for event in event_list {
     json_string_list.push(json_str);
 }
 let flattened_json_string = Bytes::from(json_string_list.join("\n"));
-let random_object_key = format!("{} {}", Uuid::new_v4().to_string(), ".json");
+let random_object_key = format!("{}.json", Uuid::new_v4());
 s3_controller::put_object(client.clone(), LANDING_BUCKET_NAME, random_object_key, flattened_json_string).await?;
 info!("Put object to landing-bucket successfully");
 ```
