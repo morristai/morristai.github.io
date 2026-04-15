@@ -19,6 +19,7 @@ dist
 resources
 .hugo_build.lock
 public
+static/pagefind
 .idea
 
 # General

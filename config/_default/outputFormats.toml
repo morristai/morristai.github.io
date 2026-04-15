@@ -1,10 +1,4 @@
 [MarkDown]
-  mediaType = "text/plain"
+  mediaType = "text/markdown"
   isPlainText = true
   isHTML = false
-
-[Algolia]
-  baseName = "algolia"
-  isPlainText = true
-  mediaType = "application/json"
-  notAlternative = true

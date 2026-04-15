@@ -92,8 +92,8 @@
       tileColor = "#da532c"
     [en.params.search]
       enable = true
-      # type of search engine ("lunr", "algolia", "fuse")
-      type = "algolia"
+      # type of search engine ("lunr", "algolia", "fuse", "pagefind")
+      type = "pagefind"
       # max index length of the chunked content
       contentLength = 4000
       # placeholder of the search bar
@@ -106,10 +106,11 @@
       highlightTag = "em"
       # whether to use the absolute URL based on the baseURL in search index
       absoluteURL = false
-      [en.params.search.algolia]
-        index = "en_index"
-        appID = "R7I3523JS6"
-        searchKey = "5cd3256ef82c1bd37aab2e4573b2f0ad"
+      [en.params.search.pagefind]
+        termFrequency = 1.0
+        pageLength = 0.75
+        termSimilarity = 1.0
+        termSaturation = 1.4
     # Home page config
     [en.params.home]
       # amount of RSS pages

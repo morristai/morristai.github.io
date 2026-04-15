@@ -31,7 +31,7 @@ defaultTheme = "dark"
   enable = true
   # type of search engine ("algolia", "fuse", "pagefind")
   # 搜索引擎的类型 ("algolia", "fuse", "pagefind")
-  type = "algolia"
+  type = "pagefind"
   # max index length of the chunked content
   # 文章内容最长索引长度
   contentLength = 4000
