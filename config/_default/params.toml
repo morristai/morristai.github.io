@@ -1,6 +1,10 @@
 # website title
 # 网站标题
 title = "300.Watts"
+# Explicit main sections for home-page post listings. Without this, Hugo auto-
+# detects per language and picks the wrong section for zh-tw (ties go to `about`
+# instead of `posts`, causing the About page to appear on the zh-tw homepage).
+mainSections = ["posts"]
 # DoIt theme version
 # DoIt 主题版本
 # https://github.com/HEIGE-PCloud/DoIt/releases
@@ -45,7 +49,7 @@ themeChangeMode = "select"
 [header.title]
 # URL of the LOGO
 # LOGO 的 URL TODO: small crab?
-logo = ""
+logo = "/images/favicon.svg"
 # title name
 # 标题名称
 name = "300.Watts"
