@@ -25,7 +25,7 @@ jobs:
     env:
       HUGO_VERSION: 0.160.1
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: true
           fetch-depth: 0
@@ -38,14 +38,14 @@ jobs:
           echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Build with Hugo
         run: |
           hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Index with Pagefind
         run: npx -y pagefind --site public
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           name: github-pages
           path: ./public
@@ -58,4 +58,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
