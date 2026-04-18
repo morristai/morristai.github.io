@@ -1,0 +1,81 @@
+{{- /*
+  Home sidebar: identity card, status chips, socials, Now, quote.
+  Data source: config/_default/params.toml [home.sidebar] table.
+  Styles: assets/css/_custom.scss "Home sidebar + timeline layout".
+*/ -}}
+{{- $s := .Site.Params.home.sidebar -}}
+
+<aside class="home-sidebar" aria-label="About the author">
+
+    {{- /* A. Identity */ -}}
+    <div class="sidebar-identity">
+        {{- with $s.avatar -}}
+            <img class="sidebar-avatar" src="{{ . | relURL }}" alt="{{ $s.name }}" width="96" height="96" loading="eager" />
+        {{- end -}}
+        {{- with $s.name -}}
+            <div class="sidebar-name">{{ . }}</div>
+        {{- end -}}
+        {{- with $s.tagline -}}
+            <div class="sidebar-tagline">{{ . }}</div>
+        {{- end -}}
+    </div>
+
+    {{- /* B. Status chips */ -}}
+    {{- with $s.status -}}
+        <ul class="sidebar-status">
+            {{- range . -}}
+                <li class="sidebar-status-item">
+                    <span class="sidebar-emoji{{ with .animate }} sidebar-emoji--{{ . }}{{ end }}" aria-hidden="true">{{ .emoji }}</span>
+                    <span class="sidebar-status-text">{{ .text }}</span>
+                </li>
+            {{- end -}}
+        </ul>
+    {{- end -}}
+
+    {{- /* C. Socials */ -}}
+    {{- with $s.socials -}}
+        <ul class="sidebar-socials">
+            {{- range . -}}
+                <li>
+                    <a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>
+                        {{ .label }}{{ if .external }}<span class="sidebar-ext" aria-hidden="true"> ↗</span>{{ end }}
+                    </a>
+                </li>
+            {{- end -}}
+        </ul>
+    {{- end -}}
+
+    {{- /* D. Now block */ -}}
+    {{- with $s.now -}}
+        {{- if ne .enable false -}}
+            <div class="sidebar-now">
+                <div class="sidebar-section-title">{{ T "homeSidebarNow" | default "Now" }}</div>
+                {{- with .items -}}
+                    <dl class="sidebar-now-items">
+                        {{- range . -}}
+                            <dt>{{ .label }}</dt>
+                            <dd>{{ .value }}</dd>
+                        {{- end -}}
+                    </dl>
+                {{- end -}}
+            </div>
+        {{- end -}}
+    {{- end -}}
+
+    {{- /* E. Footer quote — localized via i18n (homeSidebarQuote /
+         homeSidebarQuoteAuthor); falls back to params.toml text/author if
+         the i18n key is missing for a language. */ -}}
+    {{- with $s.quote -}}
+        {{- if ne .enable false -}}
+            {{- $text := T "homeSidebarQuote" | default .text -}}
+            {{- $author := T "homeSidebarQuoteAuthor" | default .author -}}
+            <blockquote class="sidebar-quote">
+                <p>{{ $text }}</p>
+                {{- with $author -}}
+                    <footer>— {{ . }}</footer>
+                {{- end -}}
+            </blockquote>
+        {{- end -}}
+    {{- end -}}
+
+</aside>

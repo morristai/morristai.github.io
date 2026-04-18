@@ -1,0 +1,49 @@
+{{- /*
+  Override of themes/DoIt/layouts/home.html.
+  Replaces the centered profile hero with a two-column layout:
+  left sidebar (identity / status / socials / Now / quote) + right timeline.
+  Sidebar markup: layouts/partials/home/sidebar.html.
+  Styles: assets/css/_custom.scss (section "Home sidebar + timeline layout").
+*/ -}}
+{{- define "title" }}
+    {{- $paginatorPager := .Scratch.Get "paginatorPager" -}}
+    {{- if and $paginatorPager (gt $paginatorPager.PageNumber 1) -}}
+        {{- T "prefixPageNumber" }} {{ $paginatorPager.PageNumber }} {{ T "suffixPageNumber" }} - {{ $.Site.Title -}}
+    {{ else }}
+        {{- $.Site.Title -}}
+    {{- end -}}
+{{- end -}}
+
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $sidebar := .Site.Params.home.sidebar -}}
+    {{- $posts := .Site.Params.home.posts -}}
+
+    <div class="page home home--with-sidebar"{{ if ne $posts.enable false | or .Content }} data-posts{{ end }}>
+
+        {{- /* Left column: sidebar */ -}}
+        {{- if and $sidebar (ne $sidebar.enable false) -}}
+            {{- partial "home/sidebar.html" . -}}
+        {{- end -}}
+
+        {{- /* Right column: optional free content + post timeline */ -}}
+        <div class="home-main">
+
+            {{- if .Content -}}
+                <div class="single">
+                    <div class="content" id="content">
+                        {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                    </div>
+                </div>
+            {{- end -}}
+
+            {{- if ne $posts.enable false | and .Site.RegularPages -}}
+                {{- range .Paginator.Pages -}}
+                    {{- .Render "summary" -}}
+                {{- end -}}
+                {{- partial "paginator.html" . -}}
+            {{- end -}}
+
+        </div>{{- /* /.home-main */ -}}
+    </div>
+{{- end -}}

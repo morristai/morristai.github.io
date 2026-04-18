@@ -1,0 +1,17 @@
+# Local overrides for the DoIt theme's English i18n strings.
+# Hugo merges these on top of themes/DoIt/i18n/en.toml — we only redefine
+# keys we want to change.
+
+[publishedOnDate]
+other = "{{ .Date }}"
+
+# Home sidebar (layouts/partials/home/sidebar.html)
+[homeSidebarNow]
+other = "Now"
+
+# Home sidebar footer quote (localized; overrides params.toml values).
+[homeSidebarQuote]
+other = "There is only one heroism in the world: to see the world as it is, and to love it."
+
+[homeSidebarQuoteAuthor]
+other = "Romain Rolland"

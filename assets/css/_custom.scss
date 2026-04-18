@@ -1,0 +1,543 @@
+// ==============================
+// Custom style
+// 自定义样式
+// ==============================
+
+// Widen the main content column across breakpoints.
+// Base rule lives in themes/DoIt/assets/css/_page/_index.scss (.page)
+// Breakpoint overrides in themes/DoIt/assets/css/_core/_media.scss
+.page {
+  max-width: 1100px;
+  width: 70%;
+}
+
+@media only screen and (max-width: 1440px) {
+  .page {
+    width: 67%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .page {
+    width: 63%;
+  }
+}
+
+// Always use the collapsible static TOC inside the article.
+// Hide the floating sidebar TOC that would otherwise overlap the widened
+// content column on wide screens.
+#toc-auto {
+  display: none !important;
+}
+
+// Default the static TOC to collapsed so readers can opt in to open it.
+// The theme toggles `.open` on click; leaving that behavior untouched.
+#toc-static {
+  .toc-title {
+    cursor: pointer;
+  }
+
+  &:not(.open) .toc-content {
+    display: none;
+  }
+}
+
+// Clamp the home-page post summary to 3 lines with an ellipsis.
+// Scope: .summary .content (summary.html renders summaries here).
+// Using -webkit-line-clamp which is now well-supported in all modern browsers.
+.summary .content {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+// Hide the author line in the post meta block.
+// The theme has flags for lastmod/wordcount/readingtime (set in params.toml)
+// but no flag for author, so CSS is the least-invasive option.
+.single .post-meta .post-author {
+  display: none;
+}
+
+// Hide the floating "jump to comments" button (chat-bubble icon) pinned to
+// the bottom-right of post pages. Theme renders it in the fixed stack
+// alongside back-to-top and the mobile TOC drawer button, with no toggle
+// flag, so CSS is again the least-invasive option.
+#view-comments {
+  display: none !important;
+}
+
+// Header alignment: pull the site title outward (left) so it lines up with
+// the home page sidebar's left edge, and nudge the nav items inward (right)
+// so they sit closer to the main column's right edge rather than hugging
+// the viewport. Theme default is `padding: 0 2rem 0 10%` in
+// themes/DoIt/assets/css/_partial/_header.scss.
+#header-desktop .header-wrapper {
+  padding-left: 11%;
+  padding-right: 11%;
+}
+
+// Narrower viewports: relax the right padding so nav items don't collide
+// with the title at mid-range widths.
+@media only screen and (max-width: 1200px) {
+  #header-desktop .header-wrapper {
+    padding-left: 14%;
+    padding-right: 8%;
+  }
+}
+
+// Hide the blue "|" header mark the theme prepends to h2-h6 in article
+// bodies. Theme source: themes/DoIt/assets/css/_page/_single.scss (the
+// `.header-mark::before { content: "|" }` rule on direct-child headings).
+// The pipe reads as a vertical bar next to every heading and is visually
+// noisy; hide it in post bodies only.
+.single .content > h2 > .header-mark::before,
+.single .content > h3 > .header-mark::before,
+.single .content > h4 > .header-mark::before,
+.single .content > h5 > .header-mark::before,
+.single .content > h6 > .header-mark::before {
+  content: none;
+  margin-right: 0;
+}
+
+// Reading comfort tweaks for post body.
+// Scope: .single .content so we don't touch home page, list pages, headings,
+// code blocks, admonitions, etc.
+.single .content {
+  p,
+  li {
+    line-height: 1.8;
+  }
+
+  p {
+    margin: 1.1rem 0;
+  }
+
+  // Theme sets `line-break: anywhere` on all <code> (see
+  // themes/DoIt/assets/css/_partial/_single/_code.scss), which lets the
+  // browser break inline code between any two characters — so tokens like
+  // `Future` wrap as `F` / `uture` at line ends. Restore default line-break
+  // for inline code only; overflow-wrap: break-word still handles genuinely
+  // long tokens. Scoped to :not(.chroma) so syntax-highlighted code blocks
+  // are untouched.
+  code:not(.chroma) {
+    line-break: auto;
+  }
+}
+
+// Warm dark theme: replace GitHub's cool blue-black (#0d1117) with a low-
+// saturation warm near-black, and soften body text so it harmonizes with
+// the new background. Light theme is untouched.
+// The theme applies the "dark" class on <html>.
+html.dark {
+  --bgColor-default: #14110e;
+  --bgColor-secondary: #1c1815;
+
+  .single .content {
+    p,
+    li {
+      color: rgba(230, 224, 212, 0.88);
+    }
+  }
+}
+
+// ==============================
+// Homepage post summary: timeline layout
+// Scope: .summary--timeline (set in layouts/_default/summary.html override).
+// Mobile (<= 680px) collapses the two-column flex into stacked layout and
+// swaps in an inline date caption under the title.
+// ==============================
+
+.summary--timeline {
+  // Reset: the override's outer <article> is still .single.summary, so it
+  // inherits padding / border-bottom from the theme's home page styles.
+  // We only need to lay out the inner .summary-layout.
+
+  .summary-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .summary-date-rail {
+    flex: 0 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    // Nudge the rail down so the day number aligns roughly with the title's
+    // x-height rather than its cap-height. 0.35rem matches theme title padding.
+    padding-top: 0.35rem;
+
+    .date-day {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--global-font-color);
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--global-border-color);
+      width: 100%;
+    }
+
+    .date-month-year {
+      margin-top: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--global-font-secondary-color);
+      white-space: nowrap;
+    }
+  }
+
+  .summary-body {
+    flex: 1 1 auto;
+    min-width: 0; // allow flex child to shrink under overflow
+
+    .single-title {
+      margin-top: 0; // theme default adds top margin; remove so title aligns with rail top
+    }
+  }
+
+  // Desktop: hide the fallback inline date caption (shown only on mobile).
+  .summary-date-inline {
+    display: none;
+  }
+}
+
+// ==============================
+// Collapsible long code blocks.
+// Scope: .single .content .code-block.cc-collapsible (JS in
+// assets/js/code-collapse.js adds these classes to blocks > 15 lines).
+// Behavior: hard-cut preview at ~8 lines with a fade-out mask and an
+// Expand/Collapse button pinned to the bottom-right.
+// ==============================
+
+.single .content .code-block.cc-collapsible {
+  position: relative;
+
+  // Height cap applies to the inner <pre> (theme structure:
+  // .code-block > pre > code.chroma; .code-block itself also carries
+  // .highlight). Use em so it scales with the code font-size; 8 lines at
+  // ~1.5 line-height ≈ 12em.
+  // !important is needed to beat the theme's Tailwind utility
+  // `group-[.is-closed]:max-h-0!` on code.chroma when a very long block
+  // would otherwise be fully collapsed by the theme.
+  &.cc-collapsed {
+    > pre {
+      max-height: 12em !important;
+      overflow: hidden !important;
+    }
+    > pre > code.chroma {
+      max-height: none !important;
+    }
+
+    // Fade-out mask sits above the clipped code and under the toggle button.
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5em;
+      pointer-events: none;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        var(--bgColor-secondary, #f5f5f5) 90%
+      );
+      z-index: 1;
+    }
+  }
+
+  .cc-toggle {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.5rem;
+    z-index: 2;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--global-font-color);
+    background: var(--bgColor-default, #fff);
+    border: 1px solid var(--global-border-color, rgba(0, 0, 0, 0.15));
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      background: var(--bgColor-secondary);
+      border-color: var(--global-font-secondary-color, rgba(0, 0, 0, 0.3));
+    }
+  }
+}
+
+// Dark-theme tweak: mask should fade to the warm dark background.
+html.dark .single .content .code-block.cc-collapsible.cc-collapsed::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 17, 14, 0) 0%,
+    #14110e 90%
+  );
+}
+
+// Mobile fallback: collapse the timeline rail and show an inline date caption.
+@media only screen and (max-width: 680px) {
+  .summary--timeline {
+    .summary-layout {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    // Hide the rail entirely on mobile; we use .summary-date-inline instead.
+    .summary-date-rail {
+      display: none;
+    }
+
+    .summary-date-inline {
+      display: block;
+      margin: 0.15rem 0 0.5rem;
+      font-size: 0.8rem;
+      color: var(--global-font-secondary-color);
+    }
+  }
+}
+
+// ==============================
+// Home sidebar + timeline layout
+// Markup: layouts/home.html (override) + layouts/partials/home/sidebar.html.
+// Data source: config/_default/params.toml [home.sidebar].
+// Desktop (>= 981px): two-column grid, sidebar left, posts right.
+// Mobile (<= 980px): sidebar collapses above posts with Now + quote hidden.
+// ==============================
+
+.home--with-sidebar {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 3rem;
+  align-items: start;
+
+  // Widen the home page ~8% beyond the shared .page rule, since we now have
+  // two columns to accommodate. Applied only here so post/list pages keep
+  // their narrower measure for readability.
+  max-width: 1280px;
+  width: 78%;
+}
+
+@media only screen and (max-width: 1440px) {
+  .home--with-sidebar {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .home--with-sidebar {
+    width: 72%;
+  }
+}
+
+.home-sidebar {
+  // Keep it quiet — no border, no background.
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--global-font-color);
+
+  // Sink the sidebar down so it doesn't hug the header; visually aligns the
+  // avatar closer to the first post's body rather than its title.
+  padding-top: 4rem;
+
+  .sidebar-identity {
+    text-align: left;
+
+    .sidebar-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-tagline {
+      font-size: 0.85rem;
+      color: var(--global-font-secondary-color);
+    }
+  }
+
+  .sidebar-status {
+    list-style: none;
+    padding: 0;
+    margin: 1.1rem 0 0;
+
+    .sidebar-status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.15rem 0;
+      font-size: 0.85rem;
+      color: var(--global-font-secondary-color);
+    }
+
+    .sidebar-emoji {
+      display: inline-block;
+      // Keep emoji glyph baseline aligned with the text next to it.
+      line-height: 1;
+    }
+  }
+
+  .sidebar-socials {
+    list-style: none;
+    padding: 0;
+    margin: 1.1rem 0 0;
+
+    li {
+      margin: 0.1rem 0;
+    }
+
+    a {
+      color: var(--global-font-color);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .sidebar-ext {
+      color: var(--global-font-secondary-color);
+      font-size: 0.85em;
+    }
+  }
+
+  .sidebar-section-title {
+    // Small-caps label for "Now", visually mirrors the .date-month-year style.
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--global-font-secondary-color);
+    margin-bottom: 0.4rem;
+  }
+
+  .sidebar-now {
+    margin-top: 1.4rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--global-border-color);
+
+    .sidebar-now-items {
+      margin: 0;
+      display: grid;
+      // "Reading   DDIA"-style two-column rhythm.
+      grid-template-columns: max-content 1fr;
+      column-gap: 0.75rem;
+      row-gap: 0.25rem;
+      font-size: 0.85rem;
+
+      dt {
+        color: var(--global-font-secondary-color);
+        font-weight: 500;
+      }
+
+      dd {
+        margin: 0;
+        color: var(--global-font-color);
+      }
+    }
+  }
+
+  .sidebar-quote {
+    margin: 1.6rem 0 0;
+    padding: 1.1rem 0 0;
+    border-top: 1px solid var(--global-border-color);
+    // Override theme's blockquote baseline so it reads as signature, not callout.
+    border-left: 0;
+    background: transparent;
+    font-style: italic;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--global-font-secondary-color);
+
+    p {
+      // Zero margin so the signature sits on the very next line below the
+      // quote. Theme styles may add bottom margin to <p>; override hard.
+      margin: 0 !important;
+      padding: 0;
+    }
+
+    footer {
+      // Force block on its own line, zero top margin, same italic/size/color
+      // as the quote so "— Romain Rolland" reads as a tight continuation.
+      // text-align: left beats theme's default blockquote footer alignment
+      // (which often right-aligns / indents the attribution line).
+      display: block;
+      margin: 0 !important;
+      padding: 0 !important;
+      text-align: left !important;
+      font-style: italic;
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: 0;
+      white-space: nowrap;
+
+      &::before {
+        // Theme may inject a "—" via ::before on blockquote footers; we
+        // already include the em-dash in our content, so suppress any
+        // inherited pseudo-element prefix.
+        content: none !important;
+      }
+    }
+  }
+}
+
+.home-main {
+  min-width: 0; // let grid item shrink so long post titles wrap instead of overflow
+}
+
+// Moon breathing easter egg. Pure CSS, respects prefers-reduced-motion.
+@keyframes moonBreath {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+
+.home-sidebar .sidebar-emoji--moon {
+  animation: moonBreath 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-sidebar .sidebar-emoji--moon {
+    animation: none;
+  }
+}
+
+// Mobile: collapse to single column, hide Now + quote for faster path to posts.
+@media only screen and (max-width: 980px) {
+  .home--with-sidebar {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .home-sidebar {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--global-border-color);
+
+    .sidebar-identity .sidebar-avatar {
+      width: 64px;
+      height: 64px;
+    }
+
+    .sidebar-now,
+    .sidebar-quote {
+      display: none;
+    }
+  }
+}

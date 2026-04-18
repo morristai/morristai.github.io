@@ -125,6 +125,11 @@ rss = 10
 # Page config
 # 文章页面配置
 [page]
+# Hide post meta: last-modified time, word count, reading time.
+# Author is hidden via CSS in assets/css/_custom.scss (theme has no flag).
+enableLastMod = false
+enableWordCount = false
+enableReadingTime = false
 # whether to hide a page from home page
 # 是否在主页隐藏一篇文章
 hiddenFromHomePage = false
@@ -193,7 +198,7 @@ warning = 180
 enable = true
 # whether to keep the static table of the contents in front of the post
 # 是否保持使用文章前面的静态目录
-keepStatic = false
+keepStatic = true
 # whether to make the table of the contents in the sidebar automatically collapsed
 # 是否使侧边目录自动折叠展开
 auto = true
@@ -246,7 +251,7 @@ mhchem = true
 [page.mapbox]
 # access token of Mapbox GL JS
 # Mapbox GL JS 的 access token
-accessToken = "pk.eyJ1IjoiZGlsbG9uenEiLCJhIjoiY2s2czd2M2x3MDA0NjNmcGxmcjVrZmc2cyJ9.aSjv2BNuZUfARvxRYjSVZQ"
+accessToken = ""
 # style for the light theme
 # 浅色主题的地图样式
 lightStyle = "mapbox://styles/mapbox/light-v10?optimize=true"
@@ -273,11 +278,11 @@ Blogger = false
 Buffer = false
 Digg = false
 Evernote = false
-Facebook = true
+Facebook = false
 Flipboard = false
-HackerNews = true
+HackerNews = false
 Instapaper = false
-Line = true
+Line = false
 Linkedin = false
 Mix = false
 Myspace = false
@@ -288,12 +293,12 @@ Reddit = false
 Renren = false
 Skype = false
 Stumbleupon = false
-Telegram = true
+Telegram = false
 Trello = false
 Tumblr = false
-Twitter = true
+Twitter = false
 VK = false
-Weibo = true
+Weibo = false
 Whatsapp = false
 Xing = false
 enable = true
@@ -424,20 +429,21 @@ site_id = ""
 # giscus comment config (https://giscus.app/)
 # giscus comment 评论系统设置 (https://giscus.app/)
 [page.comment.giscus]
-enable = false
+enable = true
 # owner/repo
-darkTheme = "dark"
-dataCategory = ""
-dataCategoryId = ""
+dataRepo = "morristai/morristai.github.io"
+# TODO: fill in from https://giscus.app after enabling Discussions and installing the giscus GitHub App
+dataRepoId = "R_kgDOJdDBYw"
+dataCategory = "Announcements"
+dataCategoryId = "DIC_kwDOJdDBY84C7HPm"
+dataMapping = "pathname"
+dataStrict = "0"
+dataReactionsEnabled = "1"
 dataEmitMetadata = "0"
 dataInputPosition = "bottom"
 dataLang = "en"
-dataMapping = "pathname"
-dataReactionsEnabled = "1"
-dataRepo = ""
-dataRepoId = ""
-dataStrict = "0"
 lightTheme = "light"
+darkTheme = "dark"
 # Third-party library config
 # 第三方库配置
 [page.library]
@@ -451,6 +457,11 @@ lightTheme = "light"
 # Or 或者
 # someCSS = "https://cdn.example.com/some.css"
 [page.library.js]
+# Collapse long code blocks in post bodies (> 15 lines -> show 8-line preview).
+# Source: assets/js/code-collapse.js
+[page.library.js.codeCollapse]
+  src = "js/code-collapse.js"
+  defer = true
 # someJavaScript = "some.js"
 # [page.library.js.someOtherJavaScript]
 #   src = "someOther.js"
@@ -475,7 +486,65 @@ name = "morristai"
 # 相关文章推荐配置
 [page.related]
 count = 5
+enable = false
+
+# Home page sidebar (custom override of DoIt theme's centered hero)
+# Rendered by layouts/partials/home/sidebar.html via layouts/home.html override.
+[home.sidebar]
 enable = true
+avatar = "/images/avatar.jpg"
+name = "Morris Tai"
+tagline = "Rust · Systems · Infra notes"
+
+# Status chips — small, emoji-prefixed lines under the identity block.
+# The 🌙 emoji has a CSS breathing animation (see _custom.scss).
+[[home.sidebar.status]]
+emoji = "📍"
+text = "Canada / Taiwan"
+
+[[home.sidebar.status]]
+emoji = "🌙"
+text = "Night owl · GMT-4"
+animate = "moon"  # triggers .sidebar-emoji--moon class
+
+# Social links — plain text list, external links get a ↗ suffix in the partial.
+[[home.sidebar.socials]]
+label = "GitHub"
+url = "https://github.com/morristai"
+external = true
+
+[[home.sidebar.socials]]
+label = "X"
+url = "https://x.com/morristai01"
+external = true
+
+[[home.sidebar.socials]]
+label = "Email"
+url = "mailto:morristai01@gmail.com"
+external = false
+
+# Now block — 2–3 short label/value pairs. Leave values as TODO until filled.
+[home.sidebar.now]
+enable = true
+[[home.sidebar.now.items]]
+label = "Playing"
+value = "Survive in Canada"
+[[home.sidebar.now.items]]
+label = "Building"
+value = "GPU Platform"
+[[home.sidebar.now.items]]
+label = "Thinking"
+value = "What is consciousness?"
+
+# Footer quote — becomes a quiet signature at the bottom of the sidebar.
+[home.sidebar.quote]
+enable = true
+text = "There is only one heroism in the world: to see the world as it is, and to love it."
+author = "Romain Rolland"
+
+# Disable the theme's default centered profile hero; our sidebar replaces it.
+[home.profile]
+enable = false
 
 # Sponsor config
 # 赞助设置

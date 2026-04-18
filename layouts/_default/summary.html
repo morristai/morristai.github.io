@@ -1,0 +1,64 @@
+{{- $params := .Params | merge .Site.Params.page -}}
+
+{{- /* Parse the publish date once, format day and month-year separately. */ -}}
+{{- $day := .PublishDate.Format "02" -}}
+{{- $monthYear := .PublishDate.Format "Jan 2006" -}}
+{{- $fullDate := .PublishDate.Format (.Site.Params.dateFormat | default "2006-01-02") -}}
+
+<article class="single summary summary--timeline">
+    <div class="summary-layout">
+
+        {{- /* Left rail: date anchor */ -}}
+        <div class="summary-date-rail" aria-hidden="true">
+            <span class="date-day">{{ $day }}</span>
+            <span class="date-month-year">{{ $monthYear }}</span>
+        </div>
+
+        {{- /* Right column: title, excerpt, footer */ -}}
+        <div class="summary-body">
+
+            {{- /* Title */ -}}
+            <h1 class="single-title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h1>
+
+            {{- /* Mobile-only inline date caption (hidden on desktop via CSS) */ -}}
+            <div class="summary-date-inline">
+                <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ $fullDate }}</time>
+            </div>
+
+            {{- /* Summary content: strip block-level tags so all home previews look uniform. */ -}}
+            {{- /* Keeps inline formatting (strong, em, code, a); removes h1-h6, blockquote, pre, lists, tables, images, hr. */ -}}
+            <div class="content">
+                {{- with .Summary -}}
+                    {{- $html := . -}}
+                    {{- /* Drop header-anchor links (empty <a class="header-mark">) that render ghost underlines. */ -}}
+                    {{- $html = $html | replaceRE `<a[^>]*class="[^"]*header-mark[^"]*"[^>]*>\s*</a>` "" -}}
+                    {{- /* Strip block-level wrappers so preview is one uniform paragraph. */ -}}
+                    {{- $html = $html | replaceRE `</?(h[1-6]|blockquote|pre|ul|ol|li|table|thead|tbody|tr|td|th|figure|figcaption|hr|img)[^>]*>` " " -}}
+                    {{- $html = $html | replaceRE `</?p[^>]*>` "" -}}
+                    {{- $html = $html | replaceRE `\s+` " " -}}
+                    <p>{{ $html | safeHTML }}</p>
+                {{- else -}}
+                    {{- .Description | safeHTML -}}
+                {{- end -}}
+            </div>
+
+            {{- /* Footer: read-more + tags */ -}}
+            <div class="post-footer">
+                <a href="{{ .RelPermalink }}">{{ T "readMore" }}</a>
+                {{- with .Params.tags -}}
+                    <div class="post-tags">
+                        {{- partial "plugin/fontawesome.html" (dict "Style" "solid" "Icon" "tags") -}}&nbsp;
+                        {{- range $index, $value := . -}}
+                            {{- if gt $index 0 }},&nbsp;{{ end -}}
+                            {{- $tag := partialCached "function/path.html" $value $value | printf "/tags/%v" | $.Site.GetPage -}}
+                            <a href="{{ $tag.RelPermalink }}">{{ $tag.Title }}</a>
+                        {{- end -}}
+                    </div>
+                {{- end -}}
+            </div>
+
+        </div>{{- /* /.summary-body */ -}}
+    </div>{{- /* /.summary-layout */ -}}
+</article>
