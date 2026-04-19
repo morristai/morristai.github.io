@@ -32,6 +32,16 @@ enablePWA = false
 license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
 # [Experimental] Bundle js
 bundle = false
+# Image processing config
+# 图片处理配置
+[image]
+# Enable Hugo image pipeline: produces webp + responsive srcset (800/1200/1600w)
+# via the render-image hook's OptimConfig. Required for srcset to appear in output.
+# 启用 Hugo 图片管线: 透过 render-image hook 的 OptimConfig 产出 webp + 响应式 srcset.
+optimise = true
+# Cache remote images locally so they can also go through the optimisation pipeline.
+# 缓存远端图片到本地, 以便也走优化管线.
+cacheRemote = true
 # Header config
 # 页面头部导航栏配置
 [header]
@@ -145,7 +155,7 @@ hiddenFromSearch = false
 twemoji = false
 # whether to enable lightgallery
 # 是否使用 lightgallery
-lightgallery = false
+lightgallery = true
 # whether to enable the ruby extended syntax
 # 是否使用 ruby 扩展语法
 ruby = true

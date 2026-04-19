@@ -38,13 +38,13 @@ Open `bind_address:port` on the Client to wait for connection, when someone conn
 
  `ssh -L 9090:localhost:8080 username@my-server` (*Notice that port 22 is implicit in forwarding command)
 
-{{< img src="images/port_forwarding1.png" width="700px">}}
+![Local port forwarding to a dev service behind a firewall](images/port_forwarding1.png)
 
 ### Example: Through the machine behind the firewall, connect to the specific service behind the firewall
 
 `ssh -L 9090:192.168.1.101:8080 username@my-server`
 
-{{< img src="images/port_forwarding2.png" width="700px">}}
+![Local port forwarding through a jump host to an internal service](images/port_forwarding2.png)
 
 ## Remote Port Forwarding
 
@@ -58,7 +58,7 @@ ssh -R [server_bind_address:]<server_port>:<target_ip>:<target_port> <SSH Server
 
 `ssh -R 0.0.0.0:9090:localhost:8080 username@external-server`
 
-{{< img src="images/port_forwarding3.png" width="700px">}}
+![Remote port forwarding exposing a local service via an external host](images/port_forwarding3.png)
 
 - Cautious
     For security reasons, Remote Forwarding can only be bound on the localhost of the SSH Server by default, so the above commands alone cannot open Port 9090 to external connections. You must adjust the configuration file of the SSH service on the SSH Server (usually in `/etc/ssh/sshd_config` ) to add the GatewayPorts setting so that everyone can connect to: `GatewayPorts yes`
@@ -73,7 +73,7 @@ ssh -R [server_bind_address:]<server_port>:<target_ip>:<target_port> <SSH Server
 
 Target Server: 192.168.1.100:8080
 
-{{< img src="images/port_forwarding4.png" width="700px">}}
+![Remote port forwarding into an intranet target from outside](images/port_forwarding4.png)
 
 ## Dynamic Port Forwarding
 
@@ -87,7 +87,7 @@ ssh -D [bind_address:]<port> <SSH Server>
 
 `ssh -D 9090 username@internal-machine`
 
-{{< img src="images/port_forwarding5.png" width="700px">}}
+![Dynamic port forwarding acting as a SOCKS proxy](images/port_forwarding5.png)
 
 ## Tips and Tools
 

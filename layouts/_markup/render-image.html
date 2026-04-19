@@ -1,0 +1,34 @@
+{{- /*
+    Project override of DoIt's render-image hook.
+
+    Difference from the theme version: the else branch (images without a
+    Markdown title) is also wrapped in the lightgallery anchor when
+    $lightgallery is true. In that case we drop the `tw:inline` class,
+    because wrapping an inline-classed <img> in an <a> breaks block
+    layout. When $lightgallery is false we keep the theme's original
+    `tw:inline` class so disabling lightgallery per-page leaves styling
+    identical to the theme default.
+
+    Keep the $optim srcset config in sync with the theme default. Note
+    the srcset only actually emits when site.Params.image.optimise is
+    true — see themes/DoIt/layouts/_partials/plugin/image.html for the
+    gate, and config/_default/params.toml's [image] block for the flag.
+*/ -}}
+{{- $lightgallery := .Page.Params.lightgallery | default site.Params.Page.lightgallery | default false -}}
+{{- $optim := slice
+    (dict "Process" "resize 800x webp q75" "descriptor" "800w")
+    (dict "Process" "resize 1200x webp q75" "descriptor" "1200w")
+    (dict "Process" "resize 1600x webp q75" "descriptor" "1600w")
+-}}
+
+{{- if .Title -}}
+<figure>
+    {{- dict "Src" .Destination "Title" .Text "Caption" .Title "Linked" $lightgallery "Loading" "lazy" "Resources" .Page.Resources "OptimConfig" $optim | partial "plugin/image.html" -}}
+    <figcaption class="image-caption">
+        {{- .Title | safeHTML -}}
+    </figcaption>
+</figure>
+{{- else -}}
+    {{- $class := cond $lightgallery "" "tw:inline" -}}
+    {{- dict "Src" .Destination "Class" $class "Alt" .Text "Linked" $lightgallery "Loading" "lazy" "Resources" .Page.Resources "OptimConfig" $optim | partial "plugin/image.html" -}}
+{{- end -}}

@@ -4,6 +4,9 @@
 /assets/jsconfig.json
 hugo_stats.json
 
+# Local design/planning docs (not published)
+/docs/plans/
+
 # Executable may be added to repository
 hugo.exe
 hugo.darwin
