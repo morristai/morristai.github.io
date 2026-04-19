@@ -1,34 +1,83 @@
 {{- /*
     Project override of DoIt's render-image hook.
 
-    Difference from the theme version: the else branch (images without a
-    Markdown title) is also wrapped in the lightgallery anchor when
-    $lightgallery is true. In that case we drop the `tw:inline` class,
-    because wrapping an inline-classed <img> in an <a> breaks block
-    layout. When $lightgallery is false we keep the theme's original
-    `tw:inline` class so disabling lightgallery per-page leaves styling
-    identical to the theme default.
+    Rendering strategy (deliberately diverges from theme):
 
-    Keep the $optim srcset config in sync with the theme default. Note
-    the srcset only actually emits when site.Params.image.optimise is
-    true — see themes/DoIt/layouts/_partials/plugin/image.html for the
-    gate, and config/_default/params.toml's [image] block for the flag.
+    1. In-page: always a fixed-width 600 JPG thumbnail. No srcset, no
+       WebP. Hugo preserves ICC profiles on jpg→jpg resize but strips
+       them on WebP output (known Hugo limitation), which makes wide-
+       gamut source photos (P3 phone JPGs) render dim in-page while
+       the lightbox-opened original looks correct. Using a JPG
+       thumbnail makes in-page colours match the clicked original.
+
+    2. Hover: CSS scale(1.02) in assets/css/_custom.scss (.post-image).
+
+    3. Click: lightgallery opens the *original* resource at full size.
+       <a href> points to $resource.RelPermalink (original), not the
+       600-wide thumbnail, so lightbox shows full-resolution.
+
+    Remote images and data URIs bypass the resource pipeline and render
+    as a plain inline img (matches theme fallback behaviour).
 */ -}}
 {{- $lightgallery := .Page.Params.lightgallery | default site.Params.Page.lightgallery | default false -}}
-{{- $optim := slice
-    (dict "Process" "resize 800x webp q75" "descriptor" "800w")
-    (dict "Process" "resize 1200x webp q75" "descriptor" "1200w")
-    (dict "Process" "resize 1600x webp q75" "descriptor" "1600w")
--}}
+{{- $isUrlRemote := urls.Parse .Destination | partial "function/isUrlRemote.html" -}}
+{{- $isInline := strings.HasPrefix .Destination "data:image" -}}
 
-{{- if .Title -}}
+{{- /* Resolve the source as a page resource when possible. Remote URLs
+     and data URIs fall through to a plain inline img below. */ -}}
+{{- $resource := "" -}}
+{{- if not (or $isUrlRemote $isInline) -}}
+    {{- $resource = (.Page.Resources.Get .Destination) | default (resources.Get .Destination) -}}
+{{- end -}}
+
+{{- /* Render helpers: $thumbSrc (in-page 600-wide jpg), $fullSrc
+     (original full-size). For SVGs or when resize is not applicable,
+     $thumbSrc falls back to the original so we don't break display. */ -}}
+{{- $thumbSrc := .Destination -}}
+{{- $fullSrc := .Destination -}}
+{{- $thumbW := "" -}}
+{{- $thumbH := "" -}}
+{{- if $resource -}}
+    {{- $fullSrc = $resource.RelPermalink -}}
+    {{- $isSvg := eq $resource.MediaType.SubType "svg" -}}
+    {{- if $isSvg -}}
+        {{- $thumbSrc = $resource.RelPermalink -}}
+    {{- else -}}
+        {{- /* Only downscale if the source is wider than our target.
+             Upscaling small screenshots would blur them. */ -}}
+        {{- if gt $resource.Width 600 -}}
+            {{- $thumb := $resource.Resize "600x jpg q90" -}}
+            {{- $thumbSrc = $thumb.RelPermalink -}}
+            {{- $thumbW = $thumb.Width -}}
+            {{- $thumbH = $thumb.Height -}}
+        {{- else -}}
+            {{- $thumbSrc = $resource.RelPermalink -}}
+            {{- $thumbW = $resource.Width -}}
+            {{- $thumbH = $resource.Height -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+
+{{- if $title -}}
 <figure>
-    {{- dict "Src" .Destination "Title" .Text "Caption" .Title "Linked" $lightgallery "Loading" "lazy" "Resources" .Page.Resources "OptimConfig" $optim | partial "plugin/image.html" -}}
-    <figcaption class="image-caption">
-        {{- .Title | safeHTML -}}
-    </figcaption>
+    {{- if $lightgallery -}}
+    <a class="lightgallery post-image-link" href="{{ $fullSrc }}" title="{{ $title }}" data-thumbnail="{{ $thumbSrc }}" data-sub-html="<h2>{{ $alt }}</h2><p>{{ $title }}</p>">
+    {{- end -}}
+    <img class="post-image" loading="lazy" src="{{ $thumbSrc }}"{{ with $alt }} alt="{{ . }}"{{ end }}{{ with $thumbW }} width="{{ . }}"{{ end }}{{ with $thumbH }} height="{{ . }}"{{ end }}>
+    {{- if $lightgallery -}}
+    </a>
+    {{- end -}}
+    <figcaption class="image-caption">{{ $title | safeHTML }}</figcaption>
 </figure>
 {{- else -}}
-    {{- $class := cond $lightgallery "" "tw:inline" -}}
-    {{- dict "Src" .Destination "Class" $class "Alt" .Text "Linked" $lightgallery "Loading" "lazy" "Resources" .Page.Resources "OptimConfig" $optim | partial "plugin/image.html" -}}
+    {{- if $lightgallery -}}
+    <a class="lightgallery post-image-link" href="{{ $fullSrc }}"{{ with $alt }} title="{{ . }}"{{ end }} data-thumbnail="{{ $thumbSrc }}">
+    {{- end -}}
+    <img class="post-image{{ if not $lightgallery }} tw:inline{{ end }}" loading="lazy" src="{{ $thumbSrc }}"{{ with $alt }} alt="{{ . }}"{{ end }}{{ with $thumbW }} width="{{ . }}"{{ end }}{{ with $thumbH }} height="{{ . }}"{{ end }}>
+    {{- if $lightgallery -}}
+    </a>
+    {{- end -}}
 {{- end -}}

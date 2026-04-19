@@ -143,6 +143,44 @@ html.dark {
 }
 
 // ==============================
+// Post body images: fixed-width thumbnails with hover-zoom.
+// Markup: layouts/_markup/render-image.html (override).
+// Behaviour: in-page shows a 600-wide jpg thumbnail centered in the
+// content column; hover scales 1.02; click opens lightgallery with
+// the original full-size image.
+// The intrinsic width/height on <img> is the thumbnail's size, so CSS
+// caps via max-width keeps layout correct on narrow viewports.
+// ==============================
+.single .content {
+  .post-image {
+    display: block;
+    margin: 1.25rem auto;
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease;
+  }
+
+  .post-image-link {
+    display: block;
+    line-height: 0; // prevent baseline gap under anchor
+
+    &:hover .post-image {
+      transform: scale(1.02);
+    }
+  }
+
+  // figure wrapper centres caption under the thumbnail.
+  figure {
+    margin: 1.25rem auto;
+
+    .post-image {
+      margin: 0 auto;
+    }
+  }
+}
+
+// ==============================
 // Homepage post summary: timeline layout
 // Scope: .summary--timeline (set in layouts/_default/summary.html override).
 // Mobile (<= 680px) collapses the two-column flex into stacked layout and
