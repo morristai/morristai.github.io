@@ -23,23 +23,160 @@
   }
 }
 
-// Always use the collapsible static TOC inside the article.
-// Hide the floating sidebar TOC that would otherwise overlap the widened
-// content column on wide screens.
-#toc-auto {
-  display: none !important;
+// ==============================
+// Table of Contents
+// Desktop (>= 1024px): floating FAB pinned to right edge, vertically centered.
+// Hover expands it into a panel showing the TOC; mouseout collapses.
+// Narrow screens (< 1024px): FAB hidden, fall back to #toc-static
+// (the theme's collapsible in-article TOC above the post body).
+//
+// Config pairing: config/_default/params.toml sets [page.toc] keepStatic = false,
+// so the theme emits #toc-auto (the floating sidebar) in addition to #toc-static.
+// We repurpose #toc-auto as the FAB on desktop.
+//
+// Note: themes/DoIt/assets/js/theme.ts mutates #toc-auto inline styles
+// (position/top) on scroll — we beat those with !important on our fixed layout.
+// ==============================
+
+// Default: hide the static in-article TOC (mobile rule below re-enables it).
+#toc-static {
+  display: none;
 }
 
-// Default the static TOC to collapsed so readers can opt in to open it.
-// The theme toggles `.open` on click; leaving that behavior untouched.
-#toc-static {
-  .toc-title {
-    cursor: pointer;
+// Below 1024px: hide the FAB and show the in-article collapsible TOC.
+@media only screen and (max-width: 1023px) {
+  #toc-auto {
+    display: none !important;
   }
 
-  &:not(.open) .toc-content {
-    display: none;
+  #toc-static {
+    display: block;
+
+    .toc-title {
+      cursor: pointer;
+    }
+
+    &:not(.open) .toc-content {
+      display: none;
+    }
   }
+}
+
+// Desktop: #toc-auto becomes the FAB.
+@media only screen and (min-width: 1024px) {
+  #toc-auto {
+    // Pin to viewport top-right. Stays anchored at the same top/right in
+    // both collapsed and expanded states — we only morph width/height/radius
+    // on hover. Moving `top` on hover caused a flicker loop: the element's
+    // bounding box slid away from the cursor mid-transition, dropping :hover,
+    // which then reversed the animation, re-hovered, and stuttered.
+    //
+    // !important overrides the inline position/top that the theme's
+    // scroll handler (theme.ts tocOnScroll) sets on this element.
+    position: fixed !important;
+    top: 5rem !important;
+    right: 1rem !important;
+    left: auto !important;
+    width: 44px !important;
+    height: 44px;
+    transform: none;
+
+    // Stack above article content, lightgallery overlays, etc.
+    z-index: 60;
+
+    // FAB visual: circular pill with a fully opaque theme background.
+    // !important on background/backdrop-filter beats the theme's @include blur
+    // mixin (themes/DoIt/assets/css/_partial/_single/_toc.scss applies a
+    // translucent background + backdrop-filter).
+    padding: 0;
+    border: 1px solid var(--global-border-color, rgba(0, 0, 0, 0.15));
+    border-left: 1px solid var(--global-border-color, rgba(0, 0, 0, 0.15));
+    border-radius: 50%;
+    background: var(--bgColor-default, #ffffff) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+
+    // Shape morph on hover. No delay on any property that affects the
+    // element's bounding box — delays there re-trigger the hover-loss loop.
+    transition:
+      width 180ms ease,
+      height 180ms ease,
+      border-radius 180ms ease,
+      padding 180ms ease,
+      box-shadow 180ms ease;
+
+    // Hide the title text; replace with a hamburger/list glyph as the
+    // collapsed affordance. The ::after marker sits centered in the circle.
+    .toc-title {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      font-size: 0;
+      line-height: 1;
+      pointer-events: none;
+
+      &::after {
+        content: "\2630"; // ☰ trigram for heaven — hamburger-ish
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1rem;
+        color: var(--global-font-color);
+      }
+    }
+
+    // Collapsed: content hidden.
+    .toc-content {
+      opacity: 0;
+      visibility: hidden;
+      max-height: 0;
+      overflow: hidden;
+      transition:
+        opacity 120ms ease,
+        visibility 0s linear 200ms,
+        max-height 0s linear 200ms;
+    }
+
+    // Expanded: grow into a panel in place. top/right/transform stay fixed
+    // so the cursor never loses the element mid-animation.
+    &:hover {
+      width: 280px !important;
+      height: auto;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+
+      .toc-title {
+        position: static;
+        inset: auto;
+        font-size: 1rem;
+        margin: 0 0 0.5rem;
+
+        &::after {
+          content: none;
+        }
+      }
+
+      .toc-content {
+        opacity: 1;
+        visibility: visible;
+        max-height: 70vh;
+        overflow-y: auto;
+        transition:
+          opacity 180ms ease 60ms,
+          visibility 0s linear 0s,
+          max-height 0s linear 0s;
+      }
+    }
+  }
+}
+
+html.dark #toc-auto {
+  background: var(--bgColor-secondary, #1c1815) !important;
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 // Clamp the home-page post summary to 3 lines with an ellipsis.

@@ -212,7 +212,10 @@ warning = 180
 enable = true
 # whether to keep the static table of the contents in front of the post
 # 是否保持使用文章前面的静态目录
-keepStatic = true
+# false → theme also renders #toc-auto (floating sidebar). We style that as
+# a hover-expanding FAB on desktop (assets/css/_custom.scss) and fall back
+# to #toc-static on narrow screens.
+keepStatic = false
 # whether to make the table of the contents in the sidebar automatically collapsed
 # 是否使侧边目录自动折叠展开
 auto = true
