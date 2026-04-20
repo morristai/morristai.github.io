@@ -11,13 +11,13 @@ tags: ["python", "c++"]
 ## Define Variables
 
 - Python
-{{< highlight python>}}
+```python
 a = 1
 b = 0.0
 c = 'xxx'
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 int a = 1;
 auto a = 1;
 double b = 0.0;
@@ -27,12 +27,12 @@ const char* c = "xxx";  // C string (pointer)
 std::string c = "xxx";
 std::string c("xxx");
 std::string c{"xxx"};
-{{< / highlight >}}
+```
 
 ## Variable Scopes
 
 - Python
-{{< highlight python>}}
+```python
 global_var1 = 1
 def func(arg):
     local_var = 2
@@ -44,10 +44,10 @@ if arg:
     # if arg evaluates to True,
     # local_var2 is still accessible here.
     return False
-{{< / highlight >}}
+```
 
 - C++
-{{< highlight cpp>}}
+```cpp
 int global_var1 = 1; // global
 static std::string global_var2; // global in the current file
 bool func(bool arg){
@@ -57,12 +57,12 @@ if(arg){
 double local_var2 = 0.5; // scope: if block
 ....}
 // local_var2 is undefined here}
-{{< / highlight >}}
+```
 
 ## Reference
 
 - Python
-{{< highlight python>}}
+```python
 s1 = {"key1" : 100}
 s2 = s1 # reference the same object
 s2["key2"] = 200
@@ -72,10 +72,10 @@ s2 = {} # s1 is NOT changed, s1 and s2
 
 # reference different objects now
 
-{{< / highlight >}}
+```
 
 - C++
-{{< highlight cpp>}}
+```cpp
 std::unordered_map<std::string, int> s1 = {"key1" : 100};
 std::unordered_map<std::string, int> s2 = s1; // copy the whole object
 std::unordered_map<std::string, int>& s2 = s1; // reference the same object
@@ -86,12 +86,12 @@ auto& s2 = s1; // reference the same object
 // Now s2 is a reference to s1
 auto s3 = s2;  // copy the whole s1 object. s3 is NOT a reference
 const auto& s3 = s2; // reference the same s1 object
-{{< / highlight >}}
+```
 
 ## Conditional
 
 - Python
-{{< highlight python>}}
+```python
 if a == 1 and b == 2:
     pass
 elif c == 3 or d == 4:
@@ -106,10 +106,10 @@ elif a == 3:
 ...
 else:
 ...
-{{< / highlight >}}
+```
 
 - C++
-{{< highlight cpp>}}
+```cpp
 if (a == 1 && b == 2){}
 else if(c == 3 || d == 4){}
 else {}
@@ -122,21 +122,21 @@ case 2: { // create a new scope if we need to define new variables
     break;}
 default:  // it's good practice to always add this
 ...};
-{{< / highlight >}}
+```
 
 ## Namespace & Imports
 
 - Python
-{{< highlight python>}}
+```python
 # Import: File: app/bidders/ai_util.py
 import app.bidders.ai_util
 # Namespace: defined by directory structure
 # Fully qualified names:
 app.bidders.ai_util.func("xxx")
-{{< / highlight >}}
+```
 
 - C++
-{{< highlight cpp>}}
+```cpp
 // Import: Files: app/bidders/ai_util.hpp & ai_util.cpp
 #include "app/bidders/ai_utils.hpp"
 // Namespace: not related to directory structure
@@ -149,12 +149,12 @@ namespace app {
 }
 // Fully qualified names:
 app::bidders::ai_util::func("xxx");
-{{< / highlight >}}
+```
 
 ## Loops
 
 - Python
-{{< highlight python>}}
+```python
 for i in range(100):
     pass
 while cond:
@@ -165,10 +165,10 @@ for item in a:
 b = {"key": 0.5, "key2", 1.0}
 for key, val in b.iteritems():
     pass
-{{< / highlight >}}    
+```    
 
 - C++
-{{< highlight cpp>}}
+```cpp
 for(int i = 0; i < 100; ++i){...}
 while(cond){}
 std::vector<int> a = {0, 1, 100};
@@ -179,19 +179,19 @@ std::unordered_map<std::string, double> b = {{"key", 0.5}, {"key2",
 for(auto& item: b){ // without &, this will copy each item
 auto& key = item.first;
 auto& val = item.second;}
-{{< / highlight >}}
+```
 
 ## Functions
 
 - Python
-{{< highlight python>}}
+```python
 def func(arg1, arg2):
     ....
     return ret1, ret2, ret3
-{{< / highlight >}}
+```
 
 - C++
-{{< highlight cpp>}}
+```cpp
 void func(const Arg1& arg1, const Arg2& arg2,
 Ret1& ret1, Ret2& ret2, Ret3& ret3
 ){...
@@ -204,12 +204,12 @@ Every variable needs to have type declaration
 Declaration before use is required
 Add const to the references that are not changed by the method
 Declare in *.hpp, implement in *.cpp (for public functions)
-{{< / highlight >}}
+```
 
 ## Class Definition
 
 - Python
-{{< highlight python>}}
+```python
 # Python version: only one *.py file:
 class PythonClass(ParentClass):
     def __init__(self): # constructor, pass instance as self
@@ -220,10 +220,10 @@ class PythonClass(ParentClass):
         return arg1 * arg2 + self.attrib
     def _some_private_method(self): # kind of private func
         pass
-{{< / highlight >}}
+```
 
 - C++
-{{< highlight cpp>}}
+```cpp
 // --------- Declaration: cpp_class.hpp ---------
 class CppClass: public ParentClass {
 public:
@@ -240,12 +240,12 @@ std::string attrib2;};
 #include "cpp_class.hpp"
 double CppClass::someMethod(double arg1, double arg2){
 return arg1 * arg2 + attrib;}
-{{< / highlight >}}
+```
 
 ## Virtual function
 
 - Python
-{{< highlight python>}}
+```python
 class Raccoon:
     def get_name(self):
         return "raccoon"
@@ -258,10 +258,10 @@ obj = Zebra()
 func(obj)
 
 # pintout: zebra_raccoon
-{{< / highlight >}}
+```
 
 - C++
-{{< highlight cpp>}}
+```cpp
 class Raccoon {
 public:
 std::string getName() const {
@@ -275,9 +275,9 @@ std::cout << maybeRaccoon.getName() << std::endl;}
 Zebra obj;
 func(obj);
 // pintout: raccoon
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 class Raccoon {
 public:
 virtual std::string getName() const {
@@ -291,20 +291,20 @@ std::cout << maybeRaccoon.getName() << std::endl;}
 Zebra obj;
 func(obj);
 // pintout: zebra_raccoon
-{{< / highlight >}}
+```
 
 ## Manage Objects
 
 - Python
-{{< highlight python>}}
+```python
 obj = ObjClass()
 obj.method(arg)
 obj.attribute = 100
 obj2 = obj # reference the same object
 # Manual delete is not needed
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 ObjClass* obj = nullptr; // prefer nullptr over NULL
 ObjClass* obj = new ObjClass(); // allocate on heap
 obj->method(arg);
@@ -322,7 +322,7 @@ auto obj = std::make_shared<ObjClass>();
 obj->method(arg);
 obj->attribute = 100; // manual delete is not needed
 auto obj2 = obj;      // point to the same object (no * or &)
-{{< / highlight >}}
+```
 
 ## Common Data Types (from Python to C++)
 
@@ -343,7 +343,7 @@ auto obj2 = obj;      // point to the same object (no * or &)
 ## Define Strings
 
 - Python
-{{< highlight python>}}
+```python
 s = "this is a string"
 s2 = s # s2 and s reference the same object
 len(s)
@@ -351,9 +351,9 @@ t = "prefix_" + s + "_suffix"
 t = "prefix1" + "prefix2" + s
 s = "has\0zero"
 # len(s): 8
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 #include <string>
 std::string s = "this is a string";
 auto s2 = s; // copy s to s2 (new object)
@@ -369,12 +369,12 @@ Alternative (C++ 14):
 using namespace std::string_literals;
 auto z = "has\0zero"s; // add "s" suffix, z is std::string
 auto z = "has\0zero"; // z is char* pointer
-{{< / highlight >}}
+```
 
 ## String Methods
 
 - Python
-{{< highlight python>}}
+```python
 t = "test str"
 if t.find("sub_str") == -1:
     print("not found")
@@ -383,9 +383,9 @@ u = t[2:]  # get sub string til end
 if not t:
     print("empty str")
 v = t.lower()
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 #include <string>
 std::string t = "test str";
 if (t.find("sub_str") == std::string::npos)
@@ -398,12 +398,12 @@ auto u = t.substr(1);
 #include <cctype>
 std::transform(t.begin(), t.end(), t.begin(), std::tolower);
 // This does not work in unicode
-{{< / highlight >}}
+```
 
 ## List (dynamic array)
 
 - Python
-{{< highlight python>}}
+```python
 a = [1, 2, 3]
 b = ["str1", "str2", "str3"]
 c = ["xxx", {}, 100, 0.5] # cannot be done in C++
@@ -413,9 +413,9 @@ del a[1], a[0:2]
 tmp = a[0:2]
 tmp = a[2]
 tmp2 = b[1] # reference the element
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 #include <vector>
 std::vector<int> a = {1, 2, 3};
 std::vector<std::string> b = {"str1", "str2", "str3"};
@@ -428,12 +428,12 @@ std::vector<int> tmp{a.begin(), a.begin() + 2};
 auto tmp = a[2];
 auto tmp2 = b[1]; // copy the element!
 auto& tmp2 = b[1]; // reference the element
-{{< / highlight >}}s
+```
 
 ## Set
 
 - Python
-{{< highlight python>}}
+```python
 a = set()
 a = {"1", "2", "3"}
 b = [1, 2, 3]
@@ -442,9 +442,9 @@ a.add("x")
 a.remove("2")
 if "4" in a:
     pass
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 #include <unordered_set>
 std::unordered_set<std::string> a;
 std::unordered_set<std::string> a = {"1", "2", "3"};
@@ -454,21 +454,21 @@ a.insert("x");
 a.erase("2");
 if (a.find("4") != a.end()){
 ...}
-{{< / highlight >}}
+```
 
 ## Dict
 
 - Python
-{{< highlight python>}}
+```python
 d = {"a": 1, "b": 2}
 nested = {
 "a": {"a1": 0.5},
 "b": {"b1": 0.3, "b2": 0.4},}
 free = {"a": 100, "b": "xxx", 50: None} # cannot do this in C++
 d = defaultdict(lambda: "null"); # cannot easily do this in C++ 
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 #include <unordered_map>
 std::unordered_map<std::string, int> d = {
 {"a", 1}, {"b", 2}};
@@ -476,12 +476,12 @@ std::unordered_map<std::string,
 std::unordered_map<std::string, int>> nested = {
 {"a": {{"a1", 0.5}}},
 {"b": {{"b1", 0.3}, {"b2", 0.4}},};
-{{< / highlight >}}
+```
 
 ## Common Dict Operations
 
 - Python
-{{< highlight python>}}
+```python
 d["new_key"] = 100
 d["no such key"] # raise KeyError
 del d["key"]; gc.collect()
@@ -489,9 +489,9 @@ if "key" in d:
     e = d["key"]
 for key, val in d.iteritems():
     pass
-{{< / highlight >}}
+```
 - C++
-{{< highlight cpp>}}
+```cpp
 d["new_key"] = 100;
 d["no such key"] // create a new item for it
 d.erase("key");
@@ -504,4 +504,4 @@ for(auto& item: d){ // without &, this will do copy
 auto& key = item.first;
 auto& val = item.second;
 ...}
-{{< / highlight >}}
+```

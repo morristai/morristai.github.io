@@ -29,25 +29,29 @@
 
             {{- /* Summary content: strip block-level tags so all home previews look uniform. */ -}}
             {{- /* Keeps inline formatting (strong, em, code, a); removes h1-h6, blockquote, pre, lists, tables, images, hr. */ -}}
-            <div class="content">
-                {{- with .Summary -}}
-                    {{- $html := . -}}
-                    {{- /* Drop header-anchor links (empty <a class="header-mark">) that render ghost underlines. */ -}}
-                    {{- $html = $html | replaceRE `<a[^>]*class="[^"]*header-mark[^"]*"[^>]*>\s*</a>` "" -}}
-                    {{- /* Strip block-level wrappers so preview is one uniform paragraph. */ -}}
-                    {{- $html = $html | replaceRE `</?(h[1-6]|blockquote|pre|ul|ol|li|table|thead|tbody|tr|td|th|figure|figcaption|hr|img)[^>]*>` " " -}}
-                    {{- $html = $html | replaceRE `</?p[^>]*>` "" -}}
-                    {{- $html = $html | replaceRE `\s+` " " -}}
-                    <p>{{ $html | safeHTML }}</p>
-                {{- else -}}
-                    {{- .Description | safeHTML -}}
-                {{- end -}}
-            </div>
+            {{- /* Wrapped in a link so the whole excerpt is clickable (replaces the old Read more button). */ -}}
+            <a class="summary-content-link" href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
+                <div class="content">
+                    {{- with .Summary -}}
+                        {{- $html := . -}}
+                        {{- /* Drop header-anchor links (empty <a class="header-mark">) that render ghost underlines. */ -}}
+                        {{- $html = $html | replaceRE `<a[^>]*class="[^"]*header-mark[^"]*"[^>]*>\s*</a>` "" -}}
+                        {{- /* Strip block-level wrappers so preview is one uniform paragraph. */ -}}
+                        {{- $html = $html | replaceRE `</?(h[1-6]|blockquote|pre|ul|ol|li|table|thead|tbody|tr|td|th|figure|figcaption|hr|img)[^>]*>` " " -}}
+                        {{- $html = $html | replaceRE `</?p[^>]*>` "" -}}
+                        {{- /* Strip nested anchors — the whole preview is already wrapped in one, and nested <a> is invalid HTML. */ -}}
+                        {{- $html = $html | replaceRE `</?a[^>]*>` "" -}}
+                        {{- $html = $html | replaceRE `\s+` " " -}}
+                        <p>{{ $html | safeHTML }}</p>
+                    {{- else -}}
+                        {{- .Description | safeHTML -}}
+                    {{- end -}}
+                </div>
+            </a>
 
-            {{- /* Footer: read-more + tags */ -}}
-            <div class="post-footer">
-                <a href="{{ .RelPermalink }}">{{ T "readMore" }}</a>
-                {{- with .Params.tags -}}
+            {{- /* Footer: tags only (read-more removed — the excerpt itself is the link now). */ -}}
+            {{- with .Params.tags -}}
+                <div class="post-footer">
                     <div class="post-tags">
                         {{- partial "plugin/fontawesome.html" (dict "Style" "solid" "Icon" "tags") -}}&nbsp;
                         {{- range $index, $value := . -}}
@@ -56,8 +60,8 @@
                             <a href="{{ $tag.RelPermalink }}">{{ $tag.Title }}</a>
                         {{- end -}}
                     </div>
-                {{- end -}}
-            </div>
+                </div>
+            {{- end -}}
 
         </div>{{- /* /.summary-body */ -}}
     </div>{{- /* /.summary-layout */ -}}

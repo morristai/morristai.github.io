@@ -71,7 +71,7 @@ pre = "<i class='fa-solid fa-person-biking'></i>"
 post = ""
 # whether to use typeit animation for title name
 # 是否为标题显示打字机动画
-typeit = true
+typeit = false
 
 # Footer config
 # 页面底部信息配置

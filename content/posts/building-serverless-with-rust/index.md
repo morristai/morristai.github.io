@@ -1,14 +1,10 @@
 ---
 title: "Serverless with Rust and Protocol Buffers"
-date: "2023-03-08T19:43:00.000Z"
-lastmod: "2023-03-30T20:27:00.000Z"
+date: 2023-03-08T19:43:00Z
+lastmod: 2023-03-30T20:27:00Z
 draft: false
-series: []
 authors: ["Morris"]
 tags: ["rust", "protobuf", "grpc", "aws", "lambda"]
-
-categories: []
-
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css" integrity="sha384-bYdxxUwYipFNohQlHt0bjN/LCpueqWz13HufFEV1SUatKs1cm4L6fFgCi1jT643X" crossorigin="anonymous">
 

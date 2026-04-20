@@ -1,16 +1,14 @@
 ---
 title: "Rust Profiling Essentials with perf"
-date: "2023-10-09T10:04:55+08:00"
-lastmod: 
+date: 2023-10-09T10:04:55+08:00
 draft: false
-series: []
 authors: ["Morris"]
 tags: ["rust", "profiling", "perf", "pmu", "kprobes", "dwarf", "linux"]
 ---
 
 ## What is profiling?
 
-> A: **Sampling** the program **at specific times**, and do some statistics analysis.
+> A: Sampling the program at specific times, and do some statistics analysis.
 
 It can be one of the following:
 

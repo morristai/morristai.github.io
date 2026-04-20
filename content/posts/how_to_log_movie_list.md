@@ -8,7 +8,7 @@ tags: ["powershell", "go", "smtplib"]
 
 Sometimes I upload videos for my family but don’t know if they already exist on the computer. At this time, I can think of a way to automatically email the titles of the videos already in the video library to myself for reference on a regular basis.
 
-{{< highlight zsh >}}
+```zsh
 ~/Downloads
 ➤ cat 2021-12-03-movie_list.txt -r :10
 ───────┬────────────────────────────────────────────────────────────────────────────────────────────────
@@ -25,7 +25,7 @@ Sometimes I upload videos for my family but don’t know if they already exist o
    9   │ 2021/11/12 下午 03:46:12 沙丘
   10   │ 2021/9/21 下午 03:28:33  最佳销售员
 ───────┴────────────────────────────────────────────────────────────────────────────────────────────────
-{{< / highlight >}}
+```
 
 ## Gmail low security settings must be turned on
 
@@ -37,7 +37,7 @@ In this way, emails can be sent through the `smtp.gmail.com` api.
 
 ## Consolidate video titles into text files
 
-{{< highlight powershell>}}
+```powershell
 
     echo "Starting Mailing Task"
     cd C:\Users\user\Documents\movie_list
@@ -64,11 +64,11 @@ In this way, emails can be sent through the `smtp.gmail.com` api.
     Start-Process -FilePath "C:\Users\user\Documents\movie_list\send_email.exe"
     echo "Done!"
 
-{{< / highlight >}}
+```
 
 ## Find the latest archive listing
 
-{{< highlight go>}}
+```go
 
     package main
 
@@ -103,11 +103,11 @@ In this way, emails can be sent through the `smtp.gmail.com` api.
         return matches, nil
     }
 
-{{< / highlight >}}
+```
 
 ## Email the result list file
 
-{{< highlight go>}}
+```go
 
     func main() {
         fmt.Println("Start mailing process...")
@@ -131,6 +131,6 @@ In this way, emails can be sent through the `smtp.gmail.com` api.
         }
         fmt.Println("Successfully sent list to youremail@gmail.com")
     }
-{{< / highlight >}}
+```
 
 Finally just put the Script into the schedler of the operating system! Cheers~ :beers:

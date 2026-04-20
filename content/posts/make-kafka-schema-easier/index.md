@@ -1,9 +1,7 @@
 ---
 title: "Make Kafka Schema Easier"
-date: "2022-01-26T10:04:55+08:00"
-lastmod: 
+date: 2022-01-26T10:04:55+08:00
 draft: false
-series: []
 authors: ["Morris"]
 tags: ["kafka", "schema", "avro"]
 ---

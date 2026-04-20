@@ -9,24 +9,24 @@ tags: ["go", "binary search"]
 In Python, we are used to using `bisect` to search for elements in the List. In Go, `sort.Search()` can also provide us with the same purpose.
 As in Python, the target array is sorted before searching.
 
-{{< highlight go>}}
+```go
 arr := []int{9, 2, 1, 3, 6, 4, 5, 5}
 sort. Ints(arr)
-{{< / highlight >}}
+```
 
 After sorting, we use sort.Search(), the first parameter is the search target, and the second is the function of the search condition.
 Here we input slice: [1 2 3 4 5 5 6 9], find the 5 closest to the left, and the program returns the index 4.
 
-{{< highlight go>}}
+```go
 // func Search(n int, f func(int) bool) int
 i := sort.Search(len(arr), func(i int) bool { return arr[i] >= 5 })
 fmt.Println(i) // output: 4
-{{< / highlight >}}
+```
 
 But in Python's `bisect.left()`, you can specify the search range. (`bisect. bisect_left(a, x, lo=0, hi=len(a))`)
 I found on the Internet that enthusiastic netizens implement the function of specifying the range ([reference link](https://codeblog.shank.in/posts/golang-equivalent-of-pythons-bisect_left-and-bisect_right/)):
 
-{{< highlight go>}}
+```go
 func BisectLeft(a []int, v int) int {
     // Freely adjust the search range
 	return bisectLeftRange(a, v, 0, len(a))
@@ -51,10 +51,10 @@ func bisectRightRange(a []int, v int, lo, hi int) int {
 		return s[i] > v
 	})
 }
-{{< / highlight >}}
+```
 
 In this way, we only need to call `bisect.left()` or `bisect.right()` like Python to specify the search range.
-{{< highlight go>}}
+```go
 func BinarySearch(a []int, v int) int {
 	pos := BisectLeft(a, v)
 	if pos == len(a) {
@@ -75,6 +75,6 @@ func BinarySearch(a []int, v int) int {
 		return pos
 	}
 }
-{{< / highlight >}}
+```
 
 Ref:  [The 3 ways to sort in Go](https://yourbasic.org/golang/how-to-sort-in-go/)

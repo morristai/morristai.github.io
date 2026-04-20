@@ -1,26 +1,27 @@
 ---
-title: "Kaggle Tatanic Stacking 學習模型整理"
+title: "Notes on the Kaggle Titanic Stacking Model"
 date: 2017-08-17T11:51:08+08:00
 draft: false
 tags: ["kaggle", "stacking"]
 ---
 
-在看過[Kaggle](https://google.com)上Titanic的一些kernels，其中不乏用SVM, RandomForest, LogisticRegression, etc. 而這Kernel有趣的是他利用6種不同的learning models去建模。\
+While reading through [Kaggle](https://google.com) kernels for the Titanic challenge, many of them use SVM, RandomForest, LogisticRegression, etc. What makes this particular kernel interesting is that it builds a model from six different learners:\
 [Introduction to Ensembling/Stacking in Python Using data from Titanic: Machine Learning from Disaster](https://www.kaggle.com/arthurtok/introduction-to-ensembling-stacking-in-python)\
-在Level 1用了`RandomForestClassifier`, `AdaBoostClassifier`, `GradientBoostingClassifier`, `ExtraTreesClassifier`, `SVM`，而Level 2用了`XGBoost`。
-我大致畫出整個模型的流程架構，以便於理解，光看源碼其實很難短時間理解在幹嘛，作者靈活的用了class來降低在jupyter notebook內程式碼的複雜度，方便之後修改和整理。
+At Level 1 it uses `RandomForestClassifier`, `AdaBoostClassifier`, `GradientBoostingClassifier`, `ExtraTreesClassifier`, and `SVM`, and at Level 2 it uses `XGBoost`.
+I sketched the overall flow of the model to make it easier to understand — the raw source is hard to parse quickly. The author cleverly uses classes to keep the notebook code clean, which also makes it easier to modify and organize later.
 
-![tatanic_stacking_flow](/images/tatanic_stacking.png)
+<!-- NOTE: There was originally a self-drawn stacking flow diagram here (/images/tatanic_stacking.png). The image file has been lost; TODO replace. -->
+> _(Image missing: this spot originally showed a Level 1 / Level 2 stacking flow diagram, illustrating how out-of-fold predictions from 5 base learners are combined to form the training/test data for the XGBoost meta-learner.)_
 
 ### Level 1
-這裡最重要的是數據處理，Kaggle只給了我們兩份資料：train ＆ test，其中`train.shape` = (891, 12)，`test.shape` = (418,11)。
-用交叉驗證切割train之後會有178 x 5的數據集，由於我們n-fold有五組，Model也有五個，這裡容易腦袋打結。所以我們先用model 1(隨機森林)舉例：train切成五組之後丟給隨機森林訓練，第一組有713人當訓練集，178人當驗證集(validation set)，第二組則換成另一批713人當訓練集，178人當驗證集，以此類推。驗證出來的答案打包成一組178 x 4+179剛好成為891的et_oof_train(注意！KFold把我們的資料切成5份時，實際上是把第一份切成712 x 179，其餘切成713 x 178，我就是卡在這裡..囧)。
-當我們對每個模型這樣做的時候，就得到五個out-of-fold_train，結合在一起就變成891 x 5的訓練集(就是XGBoost的訓練集)！
-那XGBoost的測試集哪裡來？再用剛剛隨機森林做例子：我們把訓練集分成五組，所訓練出來的隨機森林就有5個，現在就用5個隨機森林去對test預測，所預測出來的結果就是之5 x 418! 我們在將其求平均並reshape(-1, 1)，所得到的結果是(418,)的ndarray，數值介在0~1之間。
-又我們有5個models，所以最後的x_test有418 x 5個數。
+The most important part here is the data handling. Kaggle gives us two files: train and test, where `train.shape` = (891, 12) and `test.shape` = (418, 11).
+After splitting `train` with cross-validation, you get five 178-row slices. Since we have 5 folds and 5 models, this is where it's easy to get confused. So let's walk through Model 1 (Random Forest) as an example: we split `train` into 5 folds, feed them into Random Forest, with the first fold using 713 people as the training set and 178 as the validation set, the second fold swapping in a different 713 as the training set and 178 as validation, and so on. The predictions from all validation sets combine into a 178 × 4 + 179 = 891 `et_oof_train` array. (Careful! When `KFold` splits our data into 5 parts, the first part is actually 712 × 179 while the rest are 713 × 178 — I got stuck on that for a while...)
+Repeat this for each model and you get five `out-of-fold_train` arrays. Combined, they form an 891 × 5 training set — the training set for XGBoost.
+Where does XGBoost's test set come from? Continuing the Random Forest example: we split the training set into 5 folds, producing 5 Random Forest models. Each of those 5 models predicts on `test`, giving us 5 × 418 predictions. We average these and reshape to (-1, 1), yielding a (418,) ndarray with values between 0 and 1.
+Since we have 5 models, the final `x_test` has 418 × 5 entries.
 ### Level 2
-最後在XGBoost中剩下調參數了，放一下作者的參數做參考
-{{< highlight python>}}
+Finally, in XGBoost it's just a matter of tuning parameters. Here are the author's parameters for reference:
+```python
 gbm = xgb.XGBClassifier(
  #learning_rate = 0.02,
  n_estimators= 2000,
@@ -34,6 +35,6 @@ gbm = xgb.XGBClassifier(
  nthread= -1,
  scale_pos_weight=1).fit(x_train, y_train)
 predictions = gbm.predict(x_test)
-{{< / highlight >}}
-這樣基本上就完成我們的stacking模型了~
-如有錯誤歡迎指正
+```
+And that basically completes our stacking model.
+Corrections are welcome if I got anything wrong.

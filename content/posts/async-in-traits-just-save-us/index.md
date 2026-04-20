@@ -1,9 +1,7 @@
 ---
 title: "Async in Traits Just Save Us"
-date: "2024-03-10T10:04:55+08:00"
-lastmod: 
+date: 2024-03-10T10:04:55+08:00
 draft: false
-series: []
 authors: ["Morris"]
 tags: ["rust", "opendal", "async", "future", "trait"]
 ---
