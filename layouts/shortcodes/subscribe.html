@@ -1,0 +1,76 @@
+<style>
+  .subscribe-box {
+    margin: 2.5rem auto;
+    max-width: 520px;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--global-border-color, rgba(128, 128, 128, 0.25));
+    border-radius: 8px;
+    background: transparent;
+  }
+  .subscribe-box h5 {
+    margin: 0 0 0.9rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    color: inherit;
+  }
+  .subscribe-box .subscribe-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .subscribe-box input[type="email"] {
+    flex: 1;
+    height: 38px;
+    padding: 0 0.75rem;
+    border-radius: 6px;
+    border: 1px solid var(--global-border-color, rgba(128, 128, 128, 0.35));
+    background: transparent;
+    color: inherit;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  .subscribe-box input[type="email"]:focus {
+    border-color: var(--single-link-color, #3498db);
+  }
+  .subscribe-box button {
+    height: 38px;
+    padding: 0 1.1rem;
+    border: 0;
+    border-radius: 6px;
+    background: var(--single-link-color, #3498db);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .subscribe-box button:hover {
+    opacity: 0.88;
+  }
+  .subscribe-box .subscribe-footer {
+    margin-top: 0.7rem;
+    font-size: 0.72rem;
+    text-align: center;
+    opacity: 0.55;
+  }
+  .subscribe-box .subscribe-footer a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+  }
+  @media (max-width: 480px) {
+    .subscribe-box .subscribe-row { flex-direction: column; }
+    .subscribe-box button { width: 100%; }
+  }
+</style>
+<div class="subscribe-box">
+  <form action="https://api.follow.it/subscription-form/WXZTS2Vha2VkRXllbVQyU0xDOGo1aVF1U0xhWHg3aTRNZEl0c2EvcWhoeGxYdGlBMjJrSFBTZWkxS2hxVkhPTGNzNjRMeENaK3c4enZLZHAxc1dWUi8ray9SalpNandrMzFZTVRnVjNPZkJFemtmTGlqeUdGM2FzZjU4aVAycld8MGJVa0IvK3d0S3ZUNHpqNTJmeU9KSGNjeitoN0lLTHdXTlBMR1B5VXhiOD0=/8" method="post">
+    <h5>Get new posts by email</h5>
+    <div class="subscribe-row">
+      <input type="email" name="email" required placeholder="your@email.com" spellcheck="false">
+      <button type="submit">Subscribe</button>
+    </div>
+  </form>
+  <div class="subscribe-footer">
+    Powered by <a href="https://follow.it" target="_blank" rel="noopener">follow.it</a>
+  </div>
+</div>

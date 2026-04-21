@@ -3,6 +3,7 @@ title: #placeholder
 date: 2016-12-05T17:42:24+08:00
 draft: false
 ShowToc: false
+comment: false
 ---
 <h1 style="text-align:center">🚴‍♂️ Keep Calm And Cycle On 🚴‍♂️</h1>
 
@@ -19,3 +20,5 @@ ShowToc: false
 <!-- <p align="center">
 <a href="/docs/resume_morris_tai.pdf"><b>📃Resume<b> (Update: 2024/1)</a>
 </p> -->
+
+{{< subscribe >}}
