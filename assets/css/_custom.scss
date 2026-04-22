@@ -3,6 +3,46 @@
 // 自定义样式
 // ==============================
 
+// Header typography.
+// - Site title "300.Watts" — Playfair Display (classical high-contrast serif).
+// - Nav + language switcher — Inter (neutral modern sans, stays out of the
+//   title's way). CJK glyphs fall through to the OS stack (PingFang TC etc.)
+//   since Inter is Latin-only.
+// Hugo inlines these @imports at the top of the compiled stylesheet.
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+#header-desktop .header-title,
+#header-mobile .header-title {
+  a {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+}
+
+// Nav items (Posts / Tags / About) and the inline language switcher (EN / 繁).
+#header-desktop .menu,
+#header-mobile .menu,
+.language-inline {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+// Home page post preview titles — echo the site title's Playfair Display for
+// a consistent editorial feel across the home page. Scoped to .summary--timeline
+// so single-post pages keep the theme's default heading font.
+// CJK glyphs fall through to the OS serif/sans stack (PingFang TC on macOS).
+// 600 (SemiBold) rather than 700: Playfair's bold is heavy at list sizes.
+.summary--timeline .single-title {
+  a {
+    font-family: "Playfair Display", Georgia, "Times New Roman", "PingFang TC",
+      "Microsoft JhengHei", serif;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+  }
+}
+
 // Widen the main content column across breakpoints.
 // Base rule lives in themes/DoIt/assets/css/_page/_index.scss (.page)
 // Breakpoint overrides in themes/DoIt/assets/css/_core/_media.scss
@@ -390,9 +430,12 @@ html.dark {
     // x-height rather than its cap-height. 0.35rem matches theme title padding.
     padding-top: 0.35rem;
 
+    // Big day number — Playfair to echo the post title, reads as an editorial
+    // marker rather than a utilitarian timestamp. 600 matches the title weight.
     .date-day {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
       font-size: 2.25rem;
-      font-weight: 700;
+      font-weight: 600;
       line-height: 1;
       color: var(--global-font-color);
       padding-bottom: 0.35rem;
@@ -400,7 +443,11 @@ html.dark {
       width: 100%;
     }
 
+    // Small uppercase label — Inter, matches the nav. Uppercase + letter-
+    // spacing is label typography, serif would feel ornamental here.
     .date-month-year {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
       margin-top: 0.35rem;
       font-size: 0.75rem;
       font-weight: 500;
